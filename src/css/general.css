@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+  background-color: rgb(225, 255, 225);
+  font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+  margin: 0;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
