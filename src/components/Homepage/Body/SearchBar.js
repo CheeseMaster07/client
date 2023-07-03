@@ -1,12 +1,10 @@
 import React from 'react'
 
-import '../../../css/searchBar.css'
+import '../../../css/homepage/searchBar.css'
 
 
 export default function SearchBar() {
   return (
-    <div className="searchBar">
-      Search...
-    </div>
+    <input type="text" className="searchBar" placeholder='Search...' />
   )
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 
-import '../../../../css/segments.css'
+import '../../../../css/homepage/segments.css'
+import terminal_logo from '../../../../logos/terminal.png'
 
 export default function Terminal() {
   return (
@@ -17,7 +18,7 @@ export default function Terminal() {
         </div>
       </div>
       <div className="terminal-logo">
-        <img src="logos/terminal.png" alt='Terminal Logo' />
+        <img src={terminal_logo} alt='Terminal Logo' />
       </div>
     </div>
   )

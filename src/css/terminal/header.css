@@ -1,0 +1,50 @@
+@import '../colors.css';
+
+body {
+  color: var(--white)
+}
+
+.terminal-header {
+  background-color: var(--green-middle);
+  height: 60px;
+  display: flex;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  background-color: var(--green-middark);
+  cursor: pointer;
+  user-select: none;
+
+
+}
+
+.header-icon-segments {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+
+}
+
+.header-icon {
+  padding: 6px 13px;
+  cursor: pointer;
+  border-radius: 3px;
+  text-align: center;
+  user-select: none;
+
+}
+
+.header-icon p {
+  margin: 0;
+}
+
+.header-icon:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.segment-logo {
+  height: 25px;
+}

@@ -1,10 +1,11 @@
 import React from 'react'
 
-import '../../../css/body.css'
+import '../../../css/homepage/body.css'
 
 import SearchBar from './SearchBar'
 import Terminal from './Segments/Terminal'
 import Api from './Segments/Api'
+import Pricing from './Segments/Pricing'
 
 export default function Body() {
   return (
@@ -12,6 +13,7 @@ export default function Body() {
       < SearchBar />
       < Terminal />
       < Api />
+      < Pricing />
     </div>
   )
 }

@@ -1,0 +1,5 @@
+@import '../../colors.css';
+
+.stock-logo {
+  background-color: var(--green-middark)
+}

@@ -1,16 +1,19 @@
 import React from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
-import '../../css/header.css'
+import '../../css/homepage/header.css'
 
 export default function Header() {
+  const navigate = useNavigate()
+
   return (
     <div className="header">
       <div className="left-part">
         <h1>Fundamenta</h1>
       </div>
       <div className="center-part">
-        <div>
-          <h2>Terminal</h2>
+        <div >
+          <h2 ><a style={{ textDecoration: 'none', color: 'white' }} target="_blank" href="/terminal">Terminal</a></h2>
         </div>
         <div>
           <h2>Api</h2>

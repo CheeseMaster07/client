@@ -1,0 +1,2 @@
+export const FETCH_ALL_STOCKS = 'FETCH_ALL_STOCKS'
+export const FETCH_ONE_STOCK = 'FETCH_ONE_STOCK'

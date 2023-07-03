@@ -1,13 +1,12 @@
+@import './colors.css';
+
 body {
   margin: 0;
-  background-color: rgb(225, 255, 225);
+  background-color: var(--green-dark);
   font-family: 'Roboto', sans-serif;
+  overflow-x: hidden;
 }
 
 h1 {
   margin: 0;
-}
-
-::-webkit-scrollbar {
-  display: none;
 }
