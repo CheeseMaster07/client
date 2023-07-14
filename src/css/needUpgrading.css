@@ -1,0 +1,39 @@
+@import './colors.css';
+
+
+.need-upgrading {
+  text-align: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 90%;
+  width: 92.5%;
+  margin-left: 4%;
+  margin-top: 2.5%;
+  border-radius: 30px;
+  background-color: var(--green-middark);
+  box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.226);
+}
+
+.need-upgrading h2{
+  margin-top: 250px;
+  font-size: 90px;
+}
+
+.upgrade-button {
+  background-color: var(--green-middle);
+  margin-top: 100px;
+  font-weight: bold;
+  display: inline;
+  font-size: 70px;
+  padding: 30px 50px;
+  border: solid 2px var(--white);
+  border-radius: 15px;
+  box-shadow: 5px 5px 15px 3px rgba(0, 0, 0, 0.192);
+  cursor: pointer;
+}
+
+.upgrade-button:hover {
+  background-color: var(--green-midlight);
+
+}

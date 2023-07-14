@@ -1,0 +1,38 @@
+@import '../colors.css';
+
+.text_input {
+  font-size: 20px;
+  width: 35rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--green-midlight);
+  border-radius: .15rem;
+  padding: .6rem .6rem;
+  color: white;
+  background-color: var(--green-middle);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition: background-color 600000s 0s, color 600000s 0s;
+}
+
+
+.submit_button {
+  cursor: pointer;
+  font-size: 20px;
+  margin-bottom: 1rem;
+  border: 1px solid var(--green-midlight);
+  border-radius: .15rem;
+  padding: .6rem 1.2rem;
+  color: white;
+  background-color: var(--green-middle);
+}
+
+#firstName {
+  width: 16.1rem;
+  margin-right: 1.5rem;
+}
+
+#lastName {
+  width: 16.1rem;
+}

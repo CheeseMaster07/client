@@ -1,5 +1,5 @@
 import * as api from '../api'
-import { FETCH_ALL_STOCKS, FETCH_ONE_STOCK } from '../constants'
+import { FETCH_ALL_STOCKS, FETCH_ONE_STOCK, SET_SEARCHED_STOCKS } from '../constants'
 
 export const getStocks = () => async (dispatch) => {
   try {
@@ -24,3 +24,13 @@ export const getOneStock = (ticker) => async (dispatch) => {
     console.log(error.message)
   }
 }
+
+export const setSearchedStocks_action = (searchedStocks) => async (dispatch) => {
+  try {
+
+    dispatch({ type: SET_SEARCHED_STOCKS, payload: searchedStocks });
+  } catch (error) {
+    console.log(error.message)
+  }
+}
+

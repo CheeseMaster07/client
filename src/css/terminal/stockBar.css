@@ -7,18 +7,58 @@
   padding-left: 6px;
   font-size: 14px;
   font-weight: 400;
+  cursor: pointer;
 }
 
 .stockBar p {
-  cursor: pointer;
+
   margin: 0;
   display: inline-block;
 }
 
-.stockBar p:hover {
-  color: rgb(204, 204, 204);
+.stockBar:hover {
+  color: rgb(187, 187, 187);
+}
+
+.homepage-stockBar {
+  background-color: var(--green-middark);
+  padding: 4px 0;
+  padding-left: 15px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.homepage-stockBar a {
+  cursor: pointer;
+  margin: 0;
+  font-size: 30px;
+  display: inline-block;
+  font-weight: 500;
+}
+
+.homepage-stockBar:hover {
+  background-color: var(--green-middle);
 }
 
 .stocks {
   width: calc(100% + 6px)
+}
+
+.homepage-stocks {
+  width: 28.5%;
+  position: absolute;
+  top: 360px;
+}
+
+.homepage-stocks > div:first-child {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding-top: 5px;
+}
+
+.homepage-stocks > div:last-child {
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  padding-bottom: 5px;
+
 }

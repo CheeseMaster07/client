@@ -1,5 +1,42 @@
 @import '../../colors.css';
 
-.stock-logo {
-  background-color: var(--green-middark)
+.statements-header {
+  background-color: var(--green-middark);
+  height: 110px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 0;
+}
+
+.statements-ticker {
+  margin: 0;
+  font-size: 50px;
+  margin-left: 35px;
+}
+
+.statements {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.modes {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+}
+
+.timeframes {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 40px;
+
+}
+.yearly-quarterly,
+.years {
+  display: flex;
+  gap: 15px;
 }

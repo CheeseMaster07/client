@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -17,11 +17,16 @@ import SecFilings from './Segments/SecFilings'
 import Segments from './Segments/Segments'
 import Shareholders from './Segments/Shareholders'
 import Shorts from './Segments/Shorts'
-import Valuation from './Segments/Valuation'
+import Valuation from './Segments/Valuation/Valuation'
+
+import NeedUpgrading from '../../NeedUpgrading';
 
 export default function ({ segment }) {
   const dispatch = useDispatch()
   const { id } = useParams()
+  const firstLetterUppercase = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')).result);
 
   const stock = useSelector(state => state.oneStock)
 
@@ -42,44 +47,83 @@ export default function ({ segment }) {
       element = <Valuation stock={stock} />;
       break;
     case 'competition':
-      element = <Competition stock={stock} />;
+      if (user.tier != 'Free Plan' && user.tier != 'Pro Plan') {
+        element = <Competition stock={stock} />;
+      } else {
+        element = <NeedUpgrading segment={segment} plan={'Premium'} />
+      }
       break;
     case 'forecasts':
-      element = <Forecasts stock={stock} />;
+      if (user.tier != 'Free Plan') {
+        element = <Forecasts stock={stock} />;
+      } else {
+        element = <NeedUpgrading segment={segment} plan={'Pro'} />
+      }
       break;
     case 'segments':
-      element = <Segments stock={stock} />;
+      if (user.tier != 'Free Plan' && user.tier != 'Pro Plan') {
+        element = <Segments stock={stock} />;
+      } else {
+        element = <NeedUpgrading segment={segment} plan={'Premium'} />
+      }
       break;
     case 'insider':
-      element = <Insider stock={stock} />;
+      if (user.tier != 'Free Plan' && user.tier != 'Pro Plan') {
+        element = <Insider stock={stock} />;
+      } else {
+        element = <NeedUpgrading segment={segment} plan={'Premium'} />
+      }
       break;
     case 'dividends':
       element = <Dividends stock={stock} />;
       break;
     case 'shorts':
-      element = <Shorts stock={stock} />;
+      if (user.tier != 'Free Plan' && user.tier != 'Pro Plan') {
+        element = <Shorts stock={stock} />;
+      } else {
+        element = <NeedUpgrading segment={segment} plan={'Premium'} />
+      };
       break;
     case 'buybacks':
-      element = <Buybacks stock={stock} />;
+      if (user.tier != 'Free Plan') {
+        element = <Buybacks stock={stock} />;
+      } else {
+        element = <NeedUpgrading segment={segment} plan={'Pro'} />
+      }
       break;
     case 'management':
-      element = <Management stock={stock} />;
+      if (user.tier == 'Ultimate Plan' || user.tier == 'Admin Plan') {
+        element = <Management stock={stock} />;
+      } else {
+        element = <NeedUpgrading segment={segment} plan={'Ultimate'} />
+      }
       break;
     case 'shareholders':
-      element = <Shareholders stock={stock} />;
+      if (user.tier == 'Ultimate Plan' || user.tier == 'Admin Plan') {
+        element = <Shareholders stock={stock} />;
+      } else {
+        element = <NeedUpgrading segment={segment} plan={'Ultimate'} />
+      }
       break;
     case 'sec-filings':
-      element = <SecFilings stock={stock} />;
+      if (user.tier != 'Free Plan') {
+        element = <SecFilings stock={stock} />;
+      } else {
+        element = <NeedUpgrading segment={'SEC filings'} plan={'Pro'} />
+      }
       break;
     case 'export':
-      element = <Export stock={stock} />;
+      if (user.tier != 'Free Plan') {
+        element = <Export stock={stock} />;
+      } else {
+        element = <NeedUpgrading segment={'export data'} plan={'Pro'} />
+      }
       break;
 
-      break;
     default:
       element = <div></div>;
   }
-  console.log(stock)
+
   if (typeof stock === 'object' && Object.keys(stock).length !== 0) {
     return (
       <div style={{
@@ -87,6 +131,8 @@ export default function ({ segment }) {
         height: 'calc(100vh - 60px)',
         display: 'inline-block',
         float: 'right',
+        zIndex: '-1',
+        overflow: 'hidden'
       }}>
         {element}
       </div>

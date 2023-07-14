@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Outlet, Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 
 import '../../css/terminal/header.css'
@@ -24,6 +24,8 @@ export default function Header({ mode }) {
   const navigate = useNavigate()
   const location = useLocation();
   const { id } = useParams()
+
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
 
   const pathnameSegments = location.pathname.split('/');
@@ -117,6 +119,18 @@ export default function Header({ mode }) {
             <div className="header-icon">Screener</div>
           }
 
+        </div>
+        <div className='user-part' style={{ textAlign: 'center' }}>
+          <h2 style={{ marginBottom: '2px', marginTop: '8px', fontSize: '18px' }}>{user.result.name}</h2>
+          <h2 style={{
+            marginTop: '0',
+            fontSize: '14px',
+            display: 'inline-block',
+            padding: '1px 10px',
+            borderRadius: '3px',
+            color: 'black',
+            backgroundColor: `var(--tier-${user.result.tier.split(' ')[0].toLowerCase()})`
+          }}>{user.result.tier.split(' ')[0]}</h2>
         </div>
       </div>
       <Outlet />

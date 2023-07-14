@@ -4,7 +4,7 @@ import api_logo from '../../../../logos/api.png'
 
 export default function Api() {
   return (
-    <div className="api-container">
+    <div id="api" className="api-container">
       <div className="api-background"></div>
       <div className="api-segments">
         <div className="api-logo">

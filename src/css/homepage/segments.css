@@ -100,17 +100,19 @@
   margin-top: 600px;
   width: 57%;
   text-align: center;
+  padding-bottom: 300px;
 }
 
 .pricing-container h2 {
-  font-size: 60px;
+  font-size: 70px;
+  margin-bottom: 50px;
 }
 
 .pricing-options {
-  height: 600px;
   margin-top: 50px;
   display: flex;
   gap: 40px;
+  
 }
 
 .pricing-option {
@@ -139,7 +141,8 @@
 }
 
 .buy-button {
-  margin-top: 140px;
+  margin-top: 170px;
+  margin-bottom: 30px;
   border: solid 2px var(--white);
   background-color: var(--green-middark);
   padding: 15px 100px;
@@ -149,4 +152,85 @@
   font-weight: bold;
   cursor: pointer;
 
+}
+
+.buy-button:hover {
+  background-color: var(--green-middle);
+}
+
+.monthly-annually {
+  border: solid 3px var(--white);
+  padding: 15px 40px;
+  font-size: 35px;
+  font-weight: 600;
+  border-radius: 40px;
+  cursor: pointer;
+}
+
+.monthly-annually:hover {
+  background-color: var(--green-middark);
+}
+
+.sale {
+  background-color: var(--green-middark);
+  border-radius: 10px;
+  width: 70%;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.compare-pricing {
+  margin-top: 60px;
+  width: 80%;
+  padding-bottom: 60px;
+  border-radius: 35px;
+  border: solid 3px var(--white);
+}
+
+.compare-pricing table {
+  width: 100%;
+  padding-left: 90px;
+}
+
+.compare-pricing table thead tr {
+  font-weight: 600;
+  font-size: 45px;
+}
+
+.compare-pricing table thead tr td {
+  width: 10%; 
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.subHeader {
+  font-weight: 600;
+  font-size: 40px;
+}
+
+
+.not-subHeader {
+  text-align: left;
+  font-weight: 400;
+  font-size: 30px;
+}
+
+.compare-pricing table tbody tr td {
+  width: 10%; 
+  text-align: center;
+  height: 60px;
+  border-bottom: solid 2px var(--green-middark);
+
+}
+
+.compare-pricing table tbody tr td:first-child {
+  text-align: left;
+}
+
+.cross-logo {
+  width: 36px
+}
+
+.checkmark-logo {
+  width: 35px
 }

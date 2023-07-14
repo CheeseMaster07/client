@@ -30,10 +30,18 @@
   font-size: 22px;
   justify-content: space-between;
   width: 35%;
-  margin-right: 100px;
+  margin-left: 100px;
 }
 
 .right-part {
+  align-items: center;
+  width: 14%;
+  display: flex;
+  justify-content: space-between;
   font-size: 22px;
-  margin-right: 180px;
+  margin-right: 70px;
+}
+
+.right-part h2 {
+  margin: 0;
 }

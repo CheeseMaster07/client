@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Outlet, Link, useNavigate } from 'react-router-dom'
 
 
@@ -22,6 +22,8 @@ export default function Sidebar({ mode }) {
     navigate(`/terminal/${path}`)
   }
 
+  const stocks = useSelector((state) => state.stocks)
+  const searchedStocks = useSelector((state) => state.searchedStocks)
 
   const [searchQuery, setSearchQuery] = useState('')
 
@@ -44,7 +46,7 @@ export default function Sidebar({ mode }) {
           </div>
         </div>
         <div className='watchlist-button'>Watchlists</div>
-        <div className='query-results'>87/289</div>
+        <div className='query-results'>{searchedStocks.length}/{stocks.length}</div>
         <div className='arrow-bar'>
           <img className='arrow' src={arrow_png} />
         </div>

@@ -1,0 +1,49 @@
+@import '../colors.css';
+
+
+.button-terminal {
+  background-color: var(--green-midlight);
+  color: white;
+  font-size: 18px;
+  font-weight: 500;
+  font-family: 'Roboto', sans-serif;
+  border: 0;
+  padding: 5px 60px;
+  border-radius: 3px;
+  user-select: none;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.2);
+}
+
+.button-terminal-turned-of {
+  background-color: var(--green-middle);
+  color: rgb(129, 129, 129);
+  font-size: 18px;
+  font-weight: 500;
+  font-family: 'Roboto', sans-serif;
+  border: 0;
+  padding: 5px 60px;
+  border-radius: 3px;
+  user-select: none;
+  cursor: not-allowed;
+
+  box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.2);
+}
+
+.button-terminal:hover {
+  background-color: #4f5f5a;
+
+}
+
+.need-upgrading-button {
+  background-color: var(--green-midlight);
+  color: white;
+  position: absolute;
+  right: 45px;
+  top: 75px;
+  width: 160px;
+  padding: 5px 1px;
+  z-index: 2;
+  border-radius: 5px;
+  font-size: 15px;
+}
