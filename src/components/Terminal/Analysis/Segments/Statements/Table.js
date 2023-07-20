@@ -117,9 +117,9 @@ export default function Table({ data, metrics, timeframe, IS }) {
     <div className='statements-table-container'>
       <table className='statements-table'>
         <colgroup>
-          <col style={{ width: '280px', textAlign: 'left', backgroundColor: 'var(--green-middark)' }} /> {/* Fixed width for the first column */}
+          <col style={{ width: '320px', textAlign: 'left', backgroundColor: 'var(--green-middark)' }} /> {/* Fixed width for the first column */}
           {fiscalPeriods.map((period) => (
-            <col key={period} style={{ width: `${88 / fiscalPeriods.length}%` }} />
+            <col key={period} style={{ width: `${86 / fiscalPeriods.length}%` }} />
           ))}
 
         </colgroup>

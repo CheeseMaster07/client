@@ -9,27 +9,16 @@ import Content from './Content'
 export default function Valuation({ stock }) {
   const [mode, setMode] = useState('multiples')
   const [periods, setperiods] = useState('10')
-  const [metrics, setMetrics] = useState([])
+  const [metrics, setMetrics] = useState([
+    { id: 'priceSales', label: 'P/S', color: 'rgb(68, 138, 255)', yAxis: 'y1' },
+    { id: 'priceEarnings', label: 'P/E', color: 'rgb(77, 208, 225)', yAxis: 'y2' },
+    { id: 'priceBook', label: 'P/B', color: 'rgb(138,43,226)', yAxis: 'y3' },
+    { id: 'enterpriceValueEbit', label: 'EV/EBIT', color: 'rgb(68, 138, 255)', yAxis: 'y4' },
+    { id: 'enterpriceValueEbit', label: 'EV/EBITDA', color: 'rgb(68, 138, 255)', yAxis: 'y4' },
+    { id: 'priceFreeCashflow', label: 'P/FCF', color: 'rgb(251, 192, 45)', yAxis: 'y2' },
+    { id: 'adjusted_close', label: 'Price', color: 'grey', yAxis: 'y5' }
 
-  useEffect(() => {
-    let metricsData = [];
-
-
-    metricsData = [
-      { id: 'p/s', label: 'P/S', color: 'rgb(68, 138, 255)' },
-      { id: 'p/e', label: 'P/E', color: 'rgb(68, 138, 255)' },
-      { id: 'p/b', label: 'P/B', color: 'rgb(68, 138, 255)' },
-      { id: 'ev/ebit', label: 'EV/EBIT', color: 'rgb(68, 138, 255)' },
-      { id: 'ev/ebita', label: 'EV/EBITA', color: 'rgb(68, 138, 255)' },
-      { id: 'p/fcf', label: 'P/FCF', color: 'rgb(68, 138, 255)' },
-
-      // Add more metrics as needed
-    ];
-
-
-
-    setMetrics(metricsData);
-  }, [mode]);
+  ])
 
   let reports
   let allReports
@@ -91,6 +80,7 @@ export default function Valuation({ stock }) {
         :
         ''}
       <Content
+        metrics={metrics}
         mode={mode}
         periods={periods}
         reports={reports}

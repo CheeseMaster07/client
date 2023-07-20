@@ -27,8 +27,12 @@ export default function Button({ type, text, name, state, setState, timeframe, n
     case 'statement':
       if (state == name) {
         styles.backgroundColor = 'var(--green-light)'
-      }
 
+      }
+      if (window.innerWidth < 2000) {
+        styles.padding = '5px 50px'
+
+      }
       break;
     case 'mode':
       if (state == name) {
@@ -63,7 +67,7 @@ export default function Button({ type, text, name, state, setState, timeframe, n
       break;
     case 'export':
       styles = {
-        marginLeft: '775px',
+        marginLeft: '200px',
         padding: '5px 25px'
       }
 

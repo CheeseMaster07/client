@@ -25,3 +25,5 @@ export const stripeTest = (priceId, userId) => API.post(`/payment`, { id: 'prod_
 export const cancelSubscription = (userId) => API.post(`/payment/cancel`, { userId: userId })
 
 export const getProductAndPrice = (productId, price) => API.get(`/payment?id=${productId}&price=${price}`);
+
+export const dcf = (formData, ticker, years) => API.post('/dcf', { formData: formData, ticker: ticker, years: years })

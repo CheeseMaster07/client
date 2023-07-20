@@ -58,10 +58,20 @@ export default function TableRow({
     }
   }
 
+  const thStyle = {}
+  if (metric.type == 'main' || !isCollapsedMetrics[metric.id] && isCollapsedMetrics.hasOwnProperty(metric.id)) {
+    thStyle.fontWeight = 'bold'
+  } else {
+    thStyle.fontWeight = '400'
+  }
+  if (window.innerHeight < 2000) {
+    thStyle.fontSize = '15px'
+  }
+
   return (
     typeOfRow == 'real' ?
       < tr style={metric.type == 'main' ? { fontWeight: 'bold' } : !isCollapsedMetrics[metric.id] && isCollapsedMetrics.hasOwnProperty(metric.id) ? { fontWeight: 'bold' } : {}} >
-        <th className="statements-table-first-column" style={metric.type == 'main' ? { fontWeight: 'bold' } : !isCollapsedMetrics[metric.id] && isCollapsedMetrics.hasOwnProperty(metric.id) ? { fontWeight: 'bold' } : { fontWeight: '400' }}>
+        <th className="statements-table-first-column" style={thStyle}>
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex' }}>
               <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -121,7 +131,7 @@ export default function TableRow({
         {
           fiscalReports.map((report, index) => {
             return (
-              <td>{formatNumber(report[metric.id], metric.extraInfo)}</td>
+              <td style={window.innerHeight < 2000 ? { fontSize: '15px' } : {}} >{formatNumber(report[metric.id], metric.extraInfo)}</td>
             )
           })
         }
@@ -129,7 +139,7 @@ export default function TableRow({
       :
       typeOfRow == 'YoY' ?
         < tr style={{ fontWeight: '400' }} >
-          <th className="statements-table-first-column" style={{ fontStyle: 'italic', fontWeight: '400', color: '#969696', fontSize: '15px' }}>
+          <th className="statements-table-first-column" style={{ fontStyle: 'italic', fontWeight: '400', color: '#969696', fontSize: `${window.innerHeight < 2000 ? '14px' : '15px'}` }}>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <div style={{ display: 'flex', marginLeft: '50px' }}>
                 % Year over Year
@@ -145,7 +155,7 @@ export default function TableRow({
               let change = (currentValue - previousValue) / previousValue
               if (previousReport == undefined) { change = '' }
               return (
-                <td style={change > 0 ? { color: 'var(--growth)', fontStyle: 'italic', fontWeight: '400', fontSize: '15px' } : { color: 'var(--decline)', fontStyle: 'italic', fontWeight: '400', fontSize: '15px' }}>{formatNumber(change, 'change')}</td>
+                <td style={change > 0 ? { color: 'var(--growth)', fontStyle: 'italic', fontWeight: '400', fontSize: `${window.innerHeight < 2000 ? '14px' : '15px'}` } : { color: 'var(--decline)', fontStyle: 'italic', fontWeight: '400', fontSize: '15px' }}>{formatNumber(change, 'change')}</td>
               )
             })
           }
@@ -153,7 +163,7 @@ export default function TableRow({
         :
         typeOfRow == 'margin' ?
           < tr style={{ fontWeight: '400' }} >
-            <th className="statements-table-first-column" style={{ fontStyle: 'italic', fontWeight: '400', color: '#969696', fontSize: '15px' }}>
+            <th className="statements-table-first-column" style={{ fontStyle: 'italic', fontWeight: '400', color: '#969696', fontSize: `${window.innerHeight < 2000 ? '14px' : '15px'}` }}>
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <div style={{ display: 'flex', marginLeft: '50px' }}>
                   % of Revenue
@@ -168,12 +178,12 @@ export default function TableRow({
                 if (metric.id != 'incomeTaxExpense') {
                   let margin = report[metric.id] / revenue
                   return (
-                    <td style={{ fontStyle: 'italic', fontWeight: '400', color: 'yellow', fontSize: '15px' }}>{formatNumber(margin, 'change')}</td>
+                    <td style={{ fontStyle: 'italic', fontWeight: '400', color: 'yellow', fontSize: `${window.innerHeight < 2000 ? '14px' : '15px'}` }}>{formatNumber(margin, 'change')}</td>
                   )
                 } else {
                   let margin = report[metric.id] / EBIT
                   return (
-                    <td style={{ fontStyle: 'italic', fontWeight: '400', color: 'yellow', fontSize: '15px' }}>{formatNumber(margin, 'change')}</td>
+                    <td style={{ fontStyle: 'italic', fontWeight: '400', color: 'yellow', fontSize: `${window.innerHeight < 2000 ? '14px' : '15px'}` }}>{formatNumber(margin, 'change')}</td>
                   )
                 }
 

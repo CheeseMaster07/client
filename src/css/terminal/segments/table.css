@@ -10,7 +10,7 @@
   display: inline-block;
   border-radius: 5px;
   border: 1px solid var(--green-middle);
-  border-collapse: collapse; 
+  border-collapse: collapse;
   user-select: none;
 }
 
@@ -28,7 +28,7 @@
 
 .statements-table td,
 .statements-table th {
-  border: 2px solid var(--green-middle); 
+  border: 2px solid var(--green-middle);
   padding-top: 2px;
   padding-bottom: 2px;
   font-size: 16px;
@@ -58,7 +58,7 @@
   display: none;
 }
 
-.checkbox__input:checked + .checkbox__box {
+.checkbox__input:checked+.checkbox__box {
   background-color: var(--green-light);
 }
 
@@ -85,4 +85,3 @@
   padding: 4px 25px 4px 8px;
   font-weight: 500;
 }
-

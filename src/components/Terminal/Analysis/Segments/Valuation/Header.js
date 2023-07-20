@@ -33,49 +33,86 @@ export default function Header({
             setState={() => setMode('dcf')} />
 
         </div>
+        {mode == 'multiples' ?
+          <div className="years">
 
-        <div className="years">
+            <Button
+              text={'1 year'}
+              type={'periods'}
+              name={'1'}
+              state={periods}
+              setState={() => setperiods('1')}
+              numOfReports={Object.keys(allReports).length} />
 
-          <Button
-            text={'1 year'}
-            type={'periods'}
-            name={'1'}
-            state={periods}
-            setState={() => setperiods('1')}
-            numOfReports={Object.keys(allReports).length} />
+            <Button
+              text={'3 years'}
+              type={'periods'}
+              name={'3'}
+              state={periods}
+              setState={() => setperiods('3')}
+              numOfReports={Object.keys(allReports).length} />
 
-          <Button
-            text={'3 years'}
-            type={'periods'}
-            name={'3'}
-            state={periods}
-            setState={() => setperiods('3')}
-            numOfReports={Object.keys(allReports).length} />
+            <Button
+              text={'5 years'}
+              type={'periods'}
+              name={'5'}
+              state={periods}
+              setState={() => setperiods('5')}
+              numOfReports={Object.keys(allReports).length} />
 
-          <Button
-            text={'5 years'}
-            type={'periods'}
-            name={'5'}
-            state={periods}
-            setState={() => setperiods('5')}
-            numOfReports={Object.keys(allReports).length} />
+            <Button
+              text={'10 years'}
+              type={'periods'}
+              name={'10'}
+              state={periods}
+              setState={() => setperiods('10')}
+              numOfReports={Object.keys(allReports).length} />
 
-          <Button
-            text={'10 years'}
-            type={'periods'}
-            name={'10'}
-            state={periods}
-            setState={() => setperiods('10')}
-            numOfReports={Object.keys(allReports).length} />
+            <Button
+              text={'25 years'}
+              type={'periods'}
+              name={'25'}
+              state={periods}
+              setState={() => setperiods('25')}
+              numOfReports={Object.keys(allReports).length} />
+          </div>
+          :
+          <div className="years">
 
-          <Button
-            text={'25 years'}
-            type={'periods'}
-            name={'25'}
-            state={periods}
-            setState={() => setperiods('25')}
-            numOfReports={Object.keys(allReports).length} />
-        </div>
+            <Button
+              text={'5 years'}
+              type={'periods'}
+              name={'5'}
+              state={periods}
+              setState={() => setperiods('5')}
+              numOfReports={Object.keys(allReports).length} />
+
+            <Button
+              text={'10 years'}
+              type={'periods'}
+              name={'10'}
+              state={periods}
+              setState={() => setperiods('10')}
+              numOfReports={Object.keys(allReports).length} />
+
+            <Button
+              text={'20 years'}
+              type={'periods'}
+              name={'20'}
+              state={periods}
+              setState={() => setperiods('20')}
+              numOfReports={Object.keys(allReports).length} />
+
+            <Button
+              text={'30 years'}
+              type={'periods'}
+              name={'30'}
+              state={periods}
+              setState={() => setperiods('30')}
+              numOfReports={Object.keys(allReports).length} />
+          </div>
+        }
+
       </div>
     </div>
   )

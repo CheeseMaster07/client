@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { stocks, oneStock, searchedStocks } from './stocks';
 import { monthlyAnnually } from './pricing';
 import { tableState } from './table';
+import { valuationState } from './analysis';
 import auth from './auth';
 
 const rootReducer = combineReducers({
@@ -10,7 +11,8 @@ const rootReducer = combineReducers({
   searchedStocks: searchedStocks,
   auth: auth,
   monthlyAnnually: monthlyAnnually,
-  tableState: tableState
+  tableState: tableState,
+  valuationState: valuationState
 
 });
 

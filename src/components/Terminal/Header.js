@@ -55,83 +55,86 @@ export default function Header({ mode }) {
         <div className="logo">
           <h1>Fundamenta</h1>
         </div>
-        <div className="header-icon-segments">
-          {mode == 'analysis' ?
-            <>
-              <div style={segment == 'overview' ? { backgroundColor: 'var(--green-light)', padding: '8.5px 13px' } : { padding: '8.5px 13px' }} onClick={() => handleClick('overview')} className="header-icon">
-                <img style={{ height: '20px' }} className='segment-logo' src={overview_png} />
-                <p>Overview</p>
-              </div>
-              <div style={segment == 'statements' ? { backgroundColor: 'var(--green-light)' } : {}} onClick={() => handleClick('statements')} className="header-icon">
-                <img className='segment-logo' src={statements_png} />
-                <p>Statements</p>
-              </div>
-              <div style={segment == 'valuation' ? { backgroundColor: 'var(--green-light)' } : {}} onClick={() => handleClick('valuation')} className="header-icon">
-                <img className='segment-logo' src={valuation_png} />
-                <p>Valuation</p>
-              </div>
-              <div style={segment == 'dividends' ? { backgroundColor: 'var(--green-light)' } : {}} onClick={() => handleClick('dividends')} className="header-icon">
-                <img className='segment-logo' src={dividends_png} />
-                <p>Dividends</p>
-              </div>
-              <div style={segment == 'buybacks' ? { backgroundColor: 'var(--green-light)' } : {}} onClick={() => handleClick('buybacks')} className="header-icon">
-                <img className='segment-logo' src={buybacks_png} />
-                <p>Buybacks</p>
-              </div>
-              <div style={segment == 'competition' ? { backgroundColor: 'var(--green-light)' } : {}} onClick={() => handleClick('competition')} className="header-icon">
-                <img className='segment-logo' src={competition_png} />
-                <p>Competition</p>
-              </div>
-              <div style={segment == 'segments' ? { backgroundColor: 'var(--green-light)' } : {}} onClick={() => handleClick('segments')} className="header-icon">
-                <img className='segment-logo' src={segments_png} />
-                <p>Segments</p>
-              </div>
-              <div style={segment == 'forecasts' ? { backgroundColor: 'var(--green-light)' } : {}} onClick={() => handleClick('forecasts')} className="header-icon">
-                <img className='segment-logo' src={forecasts_png} />
-                <p>Forecasts</p>
-              </div>
-              <div style={segment == 'shorts' ? { backgroundColor: 'var(--green-light)' } : {}} onClick={() => handleClick('shorts')} className="header-icon">
-                <img className='segment-logo' src={shorts_png} />
-                <p>Shorts</p>
-              </div>
-              <div style={segment == 'insider' ? { backgroundColor: 'var(--green-light)' } : {}} onClick={() => handleClick('insider')} className="header-icon">
-                <img className='segment-logo' src={insider_png} />
-                <p>Insider</p>
-              </div>
-              <div style={segment == 'management' ? { backgroundColor: 'var(--green-light)' } : {}} onClick={() => handleClick('management')} className="header-icon">
-                <img className='segment-logo' src={management_png} />
-                <p>Management</p>
-              </div>
-              <div style={segment == 'shareholders' ? { backgroundColor: 'var(--green-light)' } : {}} onClick={() => handleClick('shareholders')} className="header-icon">
-                <img className='segment-logo' src={shareholders_png} />
-                <p>Shareholders</p>
-              </div>
-              <div style={segment == 'sec-filings' ? { backgroundColor: 'var(--green-light)' } : {}} onClick={() => handleClick('sec-filings')} className="header-icon">
-                <img className='segment-logo' src={secFilings_png} />
-                <p>SEC Filings</p>
-              </div>
-              <div style={segment == 'export' ? { backgroundColor: 'var(--green-light)' } : {}} onClick={() => handleClick('export')} className="header-icon">
-                <img className='segment-logo' src={export_png} />
-                <p>Export Data</p>
-              </div>
-            </>
-            :
-            <div className="header-icon">Screener</div>
-          }
+        <div style={{ display: 'flex', justifyContent: 'space-between', width: `${window.innerWidth - 60}px` }}>
+          <div className="header-icon-segments">
+            {mode == 'analysis' ?
+              <>
+                <div style={segment == 'overview' ? { backgroundColor: 'var(--green-light)', padding: '8.5px 13px' } : { padding: '8.5px 13px' }} onClick={() => handleClick('overview')} className="header-icon">
+                  <img style={{ height: '20px' }} className='segment-logo' src={overview_png} />
+                  <p>Overview</p>
+                </div>
+                <div style={segment == 'statements' ? { backgroundColor: 'var(--green-light)' } : {}} onClick={() => handleClick('statements')} className="header-icon">
+                  <img className='segment-logo' src={statements_png} />
+                  <p>Statements</p>
+                </div>
+                <div style={segment == 'valuation' ? { backgroundColor: 'var(--green-light)' } : {}} onClick={() => handleClick('valuation')} className="header-icon">
+                  <img className='segment-logo' src={valuation_png} />
+                  <p>Valuation</p>
+                </div>
+                <div style={segment == 'dividends' ? { backgroundColor: 'var(--green-light)' } : {}} onClick={() => handleClick('dividends')} className="header-icon">
+                  <img className='segment-logo' src={dividends_png} />
+                  <p>Dividends</p>
+                </div>
+                <div style={segment == 'buybacks' ? { backgroundColor: 'var(--green-light)' } : {}} onClick={() => handleClick('buybacks')} className="header-icon">
+                  <img className='segment-logo' src={buybacks_png} />
+                  <p>Buybacks</p>
+                </div>
+                <div style={segment == 'competition' ? { backgroundColor: 'var(--green-light)' } : {}} onClick={() => handleClick('competition')} className="header-icon">
+                  <img className='segment-logo' src={competition_png} />
+                  <p>Competition</p>
+                </div>
+                <div style={segment == 'segments' ? { backgroundColor: 'var(--green-light)' } : {}} onClick={() => handleClick('segments')} className="header-icon">
+                  <img className='segment-logo' src={segments_png} />
+                  <p>Segments</p>
+                </div>
+                <div style={segment == 'forecasts' ? { backgroundColor: 'var(--green-light)' } : {}} onClick={() => handleClick('forecasts')} className="header-icon">
+                  <img className='segment-logo' src={forecasts_png} />
+                  <p>Forecasts</p>
+                </div>
+                <div style={segment == 'shorts' ? { backgroundColor: 'var(--green-light)' } : {}} onClick={() => handleClick('shorts')} className="header-icon">
+                  <img className='segment-logo' src={shorts_png} />
+                  <p>Shorts</p>
+                </div>
+                <div style={segment == 'insider' ? { backgroundColor: 'var(--green-light)' } : {}} onClick={() => handleClick('insider')} className="header-icon">
+                  <img className='segment-logo' src={insider_png} />
+                  <p>Insider</p>
+                </div>
+                <div style={segment == 'management' ? { backgroundColor: 'var(--green-light)' } : {}} onClick={() => handleClick('management')} className="header-icon">
+                  <img className='segment-logo' src={management_png} />
+                  <p>Management</p>
+                </div>
+                <div style={segment == 'shareholders' ? { backgroundColor: 'var(--green-light)' } : {}} onClick={() => handleClick('shareholders')} className="header-icon">
+                  <img className='segment-logo' src={shareholders_png} />
+                  <p>Shareholders</p>
+                </div>
+                <div style={segment == 'sec-filings' ? { backgroundColor: 'var(--green-light)' } : {}} onClick={() => handleClick('sec-filings')} className="header-icon">
+                  <img className='segment-logo' src={secFilings_png} />
+                  <p>SEC Filings</p>
+                </div>
+                <div style={segment == 'export' ? { backgroundColor: 'var(--green-light)' } : {}} onClick={() => handleClick('export')} className="header-icon">
+                  <img className='segment-logo' src={export_png} />
+                  <p>Export Data</p>
+                </div>
+              </>
+              :
+              <div className="header-icon">Screener</div>
+            }
 
+          </div>
+          <div className='user-part' style={{ textAlign: 'center', marginRight: '30px' }}>
+            <h2 style={{ marginBottom: '2px', marginTop: '8px', fontSize: '18px' }}>{user.result.name}</h2>
+            <h2 style={{
+              marginTop: '0',
+              fontSize: '14px',
+              display: 'inline-block',
+              padding: '1px 10px',
+              borderRadius: '3px',
+              color: 'black',
+              backgroundColor: `var(--tier-${user.result.tier.split(' ')[0].toLowerCase()})`
+            }}>{user.result.tier.split(' ')[0]}</h2>
+          </div>
         </div>
-        <div className='user-part' style={{ textAlign: 'center' }}>
-          <h2 style={{ marginBottom: '2px', marginTop: '8px', fontSize: '18px' }}>{user.result.name}</h2>
-          <h2 style={{
-            marginTop: '0',
-            fontSize: '14px',
-            display: 'inline-block',
-            padding: '1px 10px',
-            borderRadius: '3px',
-            color: 'black',
-            backgroundColor: `var(--tier-${user.result.tier.split(' ')[0].toLowerCase()})`
-          }}>{user.result.tier.split(' ')[0]}</h2>
-        </div>
+
       </div>
       <Outlet />
     </>

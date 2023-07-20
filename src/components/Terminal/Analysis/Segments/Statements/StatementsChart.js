@@ -292,10 +292,10 @@ export default function StatementsChart({ data, state, metrics }) {
   return (
 
     <div className="chart-div">
-      <div className='chart-legend'>
+      <div style={{ marginTop: `${window.innerWidth < 2000 ? '10px' : ''}` }} className='chart-legend'>
         <ChartLegend chartData={chartData} metrics={metrics} />
       </div>
-      <div className="chart">
+      <div className="chart" style={{ height: `${window.innerWidth < 2000 ? '24rem' : ''}` }}>
         <Chart data={chartData} options={chartOptions} />
       </div>
     </div>

@@ -157,8 +157,8 @@ export default function Statements({ stock }) {
   return (
     <>
       <div className="statements-header">
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0px', width: '350px' }}>
-          <img style={{ width: '15%', backgroundColor: 'white', padding: '20px', borderRadius: '', height: '15%', marginLeft: '30px' }} src={`https://eodhistoricaldata.com/${stock.general.LogoURL}`} />
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0px', width: `${window.innerWidth < 2000 ? '320px' : '350px'}` }}>
+          <img style={{ width: `20%`, backgroundColor: 'white', padding: `${window.innerWidth < 2000 ? '10px' : '20px'}`, borderRadius: '', height: `20%`, marginLeft: '30px' }} src={`https://eodhistoricaldata.com/${stock.general.LogoURL}`} />
           <h2 className='statements-ticker'>{stock.ticker}</h2>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>

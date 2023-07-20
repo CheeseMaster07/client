@@ -33,7 +33,7 @@ export default function Pricing({ moreInfo }) {
     // const productPrice = price * 100
     // const productId = id
     // const { data } = await getProductAndPrice(productId, productPrice)
-    const urlData = await stripeTest(price_id, user.result._id)
+    const urlData = await stripeTest(price_id, user.result?._id)
     dispatch(getRecentUser(user.result))
     window.location.replace(urlData.data.url)
     // update user for recent tier change
@@ -41,7 +41,7 @@ export default function Pricing({ moreInfo }) {
 
   async function handelCancelSubscription() {
     // confirm
-    await cancelSubscription(user.result._id)
+    await cancelSubscription(user.result?._id)
     dispatch(getRecentUser(user.result))
     window.location.replace('/')
   }
@@ -81,17 +81,17 @@ export default function Pricing({ moreInfo }) {
             :
             ''}
           {user ?
-            user.result.tier != 'Pro Plan' ?
+            user.result?.tier != 'Pro Plan' ?
 
               < div onClick={() => {
                 if (monthlyAnnually == 'annually') {
-                  handleBuy(`${process.env.ANNUALLY_PRO_PRICE_ID}`)
+                  handleBuy(`${process.env.REACT_APP_NEXT_ANNUALLY_PRO_PRICE_ID}`)
 
                 } else {
-                  handleBuy(`${process.env.MONTHLY_PRO_PRICE_ID}`)
+                  handleBuy(`${process.env.REACT_APP_NEXT_MONTHLY_PRO_PRICE_ID}`)
                 }
               }} style={monthlyAnnually == 'annually' ? { marginTop: '77px' } : {}} className="buy-button">
-                {user.result.tier == 'Premium Plan' || user.result.tier == 'Ultimate Plan' ? 'Downgrade' : 'Buy'}
+                {user.result?.tier == 'Premium Plan' || user.result?.tier == 'Ultimate Plan' ? 'Downgrade' : 'Buy'}
               </div>
               :
               < div onClick={() => {
@@ -126,17 +126,17 @@ export default function Pricing({ moreInfo }) {
             ''}
 
           {user ?
-            user.result.tier != 'Premium Plan' ?
+            user.result?.tier != 'Premium Plan' ?
 
               < div onClick={() => {
                 if (monthlyAnnually == 'annually') {
-                  handleBuy(`${process.env.ANNUALLY_PREMIUM_PRICE_ID}`)
+                  handleBuy(`${process.env.REACT_APP_NEXT_ANNUALLY_PREMIUM_PRICE_ID}`)
 
                 } else {
-                  handleBuy(`${process.env.MONTHLY_PREMIUM_PRICE_ID}`)
+                  handleBuy(`${process.env.REACT_APP_NEXT_MONTHLY_PREMIUM_PRICE_ID}`)
                 }
               }} style={monthlyAnnually == 'annually' ? { marginTop: '77px' } : {}} className="buy-button">
-                {user.result.tier == 'Pro Plan' ? 'Upgrade' : user.result.tier == 'Ultimate Plan' ? 'Downgrade' : 'Buy'}
+                {user.result?.tier == 'Pro Plan' ? 'Upgrade' : user.result?.tier == 'Ultimate Plan' ? 'Downgrade' : 'Buy'}
               </div>
               :
               < div onClick={() => {
@@ -170,17 +170,17 @@ export default function Pricing({ moreInfo }) {
             ''}
 
           {user ?
-            user.result.tier != 'Ultimate Plan' ?
+            user.result?.tier != 'Ultimate Plan' ?
 
               < div onClick={() => {
                 if (monthlyAnnually == 'annually') {
-                  handleBuy(`${process.env.ANNUALLY_ULTIMATE_PRICE_ID}`)
+                  handleBuy(`${process.env.REACT_APP_NEXT_ANNUALLY_ULTIMATE_PRICE_ID}`)
 
                 } else {
-                  handleBuy(`${process.env.MONTHLY_ULTIMATE_PRICE_ID}`)
+                  handleBuy(`${process.env.REACT_APP_NEXT_MONTHLY_ULTIMATE_PRICE_ID}`)
                 }
               }} style={monthlyAnnually == 'annually' ? { marginTop: '77px' } : {}} className="buy-button">
-                {user.result.tier == 'Premium Plan' || user.result.tier == 'Pro Plan' ? 'Upgrade' : 'Buy'}
+                {user.result?.tier == 'Premium Plan' || user.result?.tier == 'Pro Plan' ? 'Upgrade' : 'Buy'}
               </div>
               :
               < div onClick={() => {

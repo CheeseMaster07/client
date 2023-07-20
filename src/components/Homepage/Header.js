@@ -49,16 +49,16 @@ export default function Header() {
         <div className="right-part">
           {user ?
             <div style={{ textAlign: 'center' }}>
-              <h2 style={{ marginBottom: '3px', fontSize: '25px' }}>{user.result.name}</h2>
+              <h2 style={{ marginBottom: '3px', fontSize: '25px' }}>{user.result?.name}</h2>
               <h2 style={{
                 fontSize: '20px',
                 marginTop: '2px',
                 color: `black`,
-                backgroundColor: `var(--tier-${user.result.tier.split(' ')[0].toLowerCase()})`,
+                backgroundColor: `var(--tier-${user.result?.tier.split(' ')[0].toLowerCase()})`,
                 display: 'inline-block',
                 padding: '1px 15px',
                 borderRadius: '5px'
-              }}>{user.result.tier.split(' ')[0]}</h2>
+              }}>{user.result?.tier.split(' ')[0]}</h2>
             </div>
 
             :

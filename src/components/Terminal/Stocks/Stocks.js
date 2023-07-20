@@ -25,13 +25,18 @@ export default function Stocks({ searchQuery, type }) {
 
 
   useEffect(() => {
+
     if (type == 'homepage') {
-      setSearchedStocks(stocks.filter(stock => stock.general.Name.toLowerCase().startsWith(searchQuery.toLowerCase()) || stock.ticker.toLowerCase().startsWith(searchQuery.toLowerCase())).slice(0, 10))
+      setSearchedStocks(stocks
+        .filter(stock => stock.general?.Name && stock?.ticker)
+        .filter(stock => stock.general.Name.toLowerCase().startsWith(searchQuery.toLowerCase()) || stock.ticker.toLowerCase().startsWith(searchQuery.toLowerCase())).slice(0, 10))
       if (searchQuery.length == 0) {
         setSearchedStocks('')
       }
     } else {
-      setSearchedStocks(stocks.filter(stock => stock.general.Name.toLowerCase().startsWith(searchQuery.toLowerCase()) || stock.ticker.toLowerCase().startsWith(searchQuery.toLowerCase())))
+      setSearchedStocks(stocks
+        .filter(stock => stock.general?.Name && stock?.ticker)
+        .filter(stock => stock.general.Name.toLowerCase().startsWith(searchQuery.toLowerCase()) || stock.ticker.toLowerCase().startsWith(searchQuery.toLowerCase())))
     }
 
 

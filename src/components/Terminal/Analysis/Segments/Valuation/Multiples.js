@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react'
-
+import { useSelector } from 'react-redux';
 import Chart from '../../Chart'
 
-export default function Multiples({ stock, periods, reports }) {
+import ChartLegend from './ChartLegend'
+
+export default function Multiples({ metrics, stock, periods, reports }) {
   const currentYear = new Date().getFullYear()
+
+  const valuationState = useSelector(state => state.valuationState)
 
   const [chartOptions, setChartOptions] = useState({
     maintainAspectRatio: false,
@@ -13,7 +17,7 @@ export default function Multiples({ stock, periods, reports }) {
           callback: function (value, index) {
             const year = this.getLabelForValue(value).split('-')[0]
 
-            if (index % 23 == 0) {
+            if (index % 4 == 0) {
               return year;
             }
 
@@ -26,11 +30,45 @@ export default function Multiples({ stock, periods, reports }) {
           display: false
         }
       },
-      y2: {
+      y1: {
+        type: 'linear',
+        display: false,
+        position: 'right',
         ticks: {
           color: 'white'
         },
-
+      },
+      y2: {
+        type: 'linear',
+        display: false,
+        position: 'right',
+        ticks: {
+          color: 'white'
+        },
+      },
+      y3: {
+        type: 'linear',
+        display: false,
+        position: 'right',
+        ticks: {
+          color: 'white'
+        },
+      },
+      y4: {
+        type: 'linear',
+        display: false,
+        position: 'right',
+        ticks: {
+          color: 'white'
+        },
+      },
+      y5: {
+        type: 'linear',
+        display: false,
+        position: 'right',
+        ticks: {
+          color: 'white'
+        },
       },
 
     },
@@ -53,71 +91,114 @@ export default function Multiples({ stock, periods, reports }) {
   }
 
   const [chartData, setChartData] = useState({
-    labels: stock.priceAction.filter(period => Number(period.date.split('-')[0]) > currentYear - Number(periods)).map((period, index) => index % timeframe === 0 ? period.date : null).filter(obj => obj !== null),
-    datasets: [{
-      type: 'line',
-      label: 'ok',
-      data: stock.priceAction.filter(period => Number(period.date.split('-')[0]) > currentYear - Number(periods)).map((period, index) => index % timeframe === 0 ? period.adjusted_close : null).filter(obj => obj !== null),
-      pointRadius: 0,
-      yAxisID: 'y2'
-    }]
+    labels: stock.priceAction
+      .filter(period => Number(period.date.split('-')[0]) > currentYear - Number(periods))
+      .map((period, index) => index % timeframe === 0 ? period.date : null)
+      .filter(obj => obj !== null),
+    datasets: metrics.map(metric => {
+      if (valuationState[metric.id]) {
+        return {
+          label: metric.label,
+          type: 'line',
+          data: stock.priceAction
+            .filter(period => Number(period.date.split('-')[0]) > currentYear - Number(periods))
+            .map((period, index) => index % timeframe === 0 ? period[metric.id] : null)
+            .filter(obj => obj !== null),
+          backgroundColor: metric.color,
+          borderColor: metric.color,
+          yAxisID: metric.yAxis,
+          pointRadius: 0,
+          borderWidth: 2.5,
+
+
+        }
+      } else {
+        return null
+      }
+    }).filter(obj => obj !== null)
   })
 
   useEffect(() => {
 
     setChartData({
-      labels: stock.priceAction.filter(period => Number(period.date.split('-')[0]) > currentYear - Number(periods)).map((period, index) => index % timeframe === 0 ? period.date : null).filter(obj => obj !== null),
-      datasets: [{
-        type: 'line',
-        label: 'ok',
-        data: stock.priceAction.filter(period => Number(period.date.split('-')[0]) > currentYear - Number(periods)).map((period, index) => index % timeframe === 0 ? period.adjusted_close : null).filter(obj => obj !== null),
-        pointRadius: 0,
-        yAxisID: 'y2'
-      }]
+      labels: stock.priceAction
+        .filter(period => Number(period.date.split('-')[0]) > currentYear - Number(periods))
+        .map((period, index) => index % timeframe === 0 ? period.date : null)
+        .filter(obj => obj !== null),
+      datasets: metrics.map(metric => {
+        if (valuationState[metric.id]) {
+          return {
+            label: metric.label,
+            type: 'line',
+            data: stock.priceAction
+              .filter(period => Number(period.date.split('-')[0]) > currentYear - Number(periods))
+              .map((period, index) => index % timeframe === 0 ? period[metric.id] : null)
+              .filter(obj => obj !== null),
+            backgroundColor: metric.color,
+            borderColor: metric.color,
+            yAxisID: metric.yAxis,
+            pointRadius: 0,
+            borderWidth: 2.5,
+
+          }
+        } else {
+          return null
+        }
+      }).filter(obj => obj !== null)
     })
-    chartOptions.scales.y2.min = 20
-  }, [periods])
+
+  }, [periods, valuationState])
 
   useEffect(() => {
-    if (chartData.datasets.filter(dataset => dataset.yAxisID == 'y2').length) {
 
-      const result = chartData.datasets.filter(dataset => dataset.yAxisID == 'y2').reduce((acc, current) => {
-        current.data.forEach(num => {
-          if (num > acc.highest) {
-            acc.highest = num;
-          }
-          if (num < acc.lowest) {
-            acc.lowest = num;
-          }
-        });
-        return acc;
-      }, { highest: -Infinity, lowest: Infinity });
+    ['y1', 'y2', 'y3', 'y4', 'y5'].forEach(y => {
 
-      setChartOptions(prevOptions => ({
-        ...prevOptions,
-        scales: {
-          ...prevOptions.scales,
-          y2: {
-            ...prevOptions.scales.y2,
-            display: true,
-            min: Math.floor(result.lowest - 2),
-            max: Math.floor(result.highest + 2),
-          }
-        }
-      }));
+      if (chartData.datasets.filter(dataset => dataset.yAxisID == y).length) {
 
-    } else {
-      setChartOptions(prevOptions => ({
-        ...prevOptions,
-        scales: {
-          ...prevOptions.scales,
-          y1: {
-            ...prevOptions.scales.y1,
-            display: false
+
+        const result = chartData.datasets.filter(dataset => dataset.yAxisID == y).reduce((acc, current) => {
+          current.data.forEach(num => {
+            if (num > acc.highest) {
+              acc.highest = num;
+            }
+            if (num < acc.lowest) {
+              acc.lowest = num;
+            }
+          });
+          return acc;
+        }, { highest: -Infinity, lowest: Infinity });
+
+        setChartOptions(prevOptions => ({
+          ...prevOptions,
+          scales: {
+            ...prevOptions.scales,
+            [y]: {
+              ...prevOptions.scales[y],
+              display: true,
+              afterTickToLabelConversion: function (scaleInstance) {
+                scaleInstance.ticks.pop();
+                scaleInstance.ticks.shift();
+              },
+              min: Math.floor(result.lowest - 2),
+              max: Math.floor(result.highest + 2),
+            }
           }
-        }
-      }));
-    }
+        }));
+
+      } else {
+        setChartOptions(prevOptions => ({
+          ...prevOptions,
+          scales: {
+            ...prevOptions.scales,
+            [y]: {
+              ...prevOptions.scales[y],
+              display: false
+            }
+          }
+        }));
+      }
+    })
+
 
   }, [chartData])
 
@@ -125,7 +206,10 @@ export default function Multiples({ stock, periods, reports }) {
   return (
     <div>
       <div className="chart-div">
-        <div style={{ marginTop: '50px', height: '55rem' }} className="chart">
+        <div style={{ marginTop: `${window.innerWidth < 2000 ? '10px' : ''}` }} className='chart-legend'>
+          <ChartLegend chartData={chartData} metrics={metrics} />
+        </div>
+        <div style={{ marginTop: `${window.innerWidth < 2000 ? '0px' : '50px'}`, height: `${window.innerWidth < 2000 ? '36rem' : '55rem'}` }} className="chart">
           <Chart data={chartData} options={chartOptions} />
         </div>
       </div>
