@@ -6,16 +6,16 @@ import { getOneStock } from '../../../actions/stocks';
 
 import Overview from './Segments/Overview'
 import Statements from './Segments/Statements/Statements'
-import Buybacks from './Segments/Buybacks'
-import Competition from './Segments/Competition'
-import Dividends from './Segments/Dividends'
+import Buybacks from './Segments/Buybacks/Buybacks'
+import Competition from './Segments/Competition/Competition'
+import Dividends from './Segments/Dividends/Dividends'
 import Export from './Segments/Export'
 import Forecasts from './Segments/Forecasts'
-import Insider from './Segments/Insider'
-import Management from './Segments/Management'
-import SecFilings from './Segments/SecFilings'
+import Insider from './Segments/Insider/Insider'
+import Management from './Segments/Management/Management'
+import SecFilings from './Segments/SecFilings/SecFilings'
 import Segments from './Segments/Segments'
-import Shareholders from './Segments/Shareholders'
+import Shareholders from './Segments/Shareholders/Shareholders'
 import Shorts from './Segments/Shorts'
 import Valuation from './Segments/Valuation/Valuation'
 
@@ -135,6 +135,19 @@ export default function ({ segment }) {
         overflow: 'hidden'
       }}>
         {element}
+      </div>
+    )
+  } else {
+    return (
+      <div style={{
+        width: 'calc(100vw - 209.09px)',
+        height: 'calc(100vh - 60px)',
+        display: 'inline-block',
+        float: 'right',
+        zIndex: '-1',
+        overflow: 'hidden'
+      }}>
+        Loading
       </div>
     )
   }

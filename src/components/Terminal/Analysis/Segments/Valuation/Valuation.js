@@ -16,7 +16,8 @@ export default function Valuation({ stock }) {
     { id: 'enterpriceValueEbit', label: 'EV/EBIT', color: 'rgb(68, 138, 255)', yAxis: 'y4' },
     { id: 'enterpriceValueEbit', label: 'EV/EBITDA', color: 'rgb(68, 138, 255)', yAxis: 'y4' },
     { id: 'priceFreeCashflow', label: 'P/FCF', color: 'rgb(251, 192, 45)', yAxis: 'y2' },
-    { id: 'adjusted_close', label: 'Price', color: 'grey', yAxis: 'y5' }
+    { id: 'marketCap', label: 'Market Cap', color: 'pink', yAxis: 'y6' },
+    { id: 'adjusted_close', label: 'Price', color: 'grey', yAxis: 'y5' },
 
   ])
 

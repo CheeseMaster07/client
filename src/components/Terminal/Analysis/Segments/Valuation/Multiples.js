@@ -179,8 +179,8 @@ export default function Multiples({ metrics, stock, periods, reports }) {
                 scaleInstance.ticks.pop();
                 scaleInstance.ticks.shift();
               },
-              min: Math.floor(result.lowest - 2),
-              max: Math.floor(result.highest + 2),
+              min: result.lowest - 1,
+              max: result.highest,
             }
           }
         }));

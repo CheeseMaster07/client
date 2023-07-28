@@ -1,12 +1,12 @@
 import React from 'react'
 
-import '../../../../../css/colors.css'
+import '../../../css/colors.css'
 
-import dots_png from '../../../../../logos/dots.png'
-import rightArrow_png from '../../../../../logos/right-arrow.png'
-import downArrow_png from '../../../../../logos/down-arrow.png'
+import dots_png from '../../../logos/dots.png'
+import rightArrow_png from '../../../logos/right-arrow.png'
+import downArrow_png from '../../../logos/down-arrow.png'
 
-import ExtrasMenu from './ExtrasMenu'
+import ExtrasMenu from './Segments/Statements/ExtrasMenu'
 
 export default function TableRow({
   typeOfRow,
@@ -20,7 +20,9 @@ export default function TableRow({
   extras,
   setExtras,
   fiscalReports,
-  IS
+  IS,
+  timeframe,
+  lastReports
 }) {
 
 
@@ -51,10 +53,12 @@ export default function TableRow({
       return (num / 1000000).toFixed(1) + 'M';
     } else if (Math.abs(num) >= 1000) {
       return (num / 1000).toFixed(1) + 'K';
-    } else if (Math.abs(num) <= 100) {
-      return `${((num * 100)?.toFixed(2))}%`
     } else {
-      return num;
+      try {
+        return num.toFixed(2);
+      } catch (error) {
+        return num
+      }
     }
   }
 
@@ -66,6 +70,40 @@ export default function TableRow({
   }
   if (window.innerHeight < 2000) {
     thStyle.fontSize = '15px'
+  }
+
+
+  function renderChangeColumns(fiscalReports, timeframe, metric) {
+
+    const allReports = [...lastReports, ...fiscalReports]
+
+
+    const tdElements = allReports.map((report, index) => {
+      const currentReport = report
+      let previousReport
+      let currentValue
+      let previousValue
+
+      if (timeframe == 'yearly') {
+        if (index == 0) return
+        previousReport = allReports[index - 1]
+      } else {
+        if ([0, 1, 2, 3].includes(index)) return
+        previousReport = allReports[index - 4]
+      }
+
+
+      currentValue = currentReport[metric.id];
+      previousValue = previousReport ? previousReport[metric.id] : 0;
+
+      let change = (currentValue - previousValue) / previousValue
+      if (previousReport == undefined) { change = '' }
+      return (
+        <td style={change > 0 ? { color: 'var(--growth)', fontStyle: 'italic', fontWeight: '400', fontSize: `${window.innerHeight < 2000 ? '14px' : '15px'}` } : { color: 'var(--decline)', fontStyle: 'italic', fontWeight: '400', fontSize: '15px' }}>{formatNumber(change, 'change')}</td>
+      )
+
+    })
+    return tdElements;
   }
 
   return (
@@ -146,19 +184,8 @@ export default function TableRow({
               </div>
             </div>
           </th>
-          {
-            fiscalReports.map((report, index) => {
-              const currentReport = report
-              const previousReport = fiscalReports[index - 1]
-              const currentValue = currentReport[metric.id];
-              const previousValue = previousReport ? previousReport[metric.id] : 0;
-              let change = (currentValue - previousValue) / previousValue
-              if (previousReport == undefined) { change = '' }
-              return (
-                <td style={change > 0 ? { color: 'var(--growth)', fontStyle: 'italic', fontWeight: '400', fontSize: `${window.innerHeight < 2000 ? '14px' : '15px'}` } : { color: 'var(--decline)', fontStyle: 'italic', fontWeight: '400', fontSize: '15px' }}>{formatNumber(change, 'change')}</td>
-              )
-            })
-          }
+          {/* {allReports = [lastReport, ...fiscalReports]} */}
+          {renderChangeColumns(fiscalReports, timeframe, metric)}
         </tr >
         :
         typeOfRow == 'margin' ?

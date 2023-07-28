@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import '../../css/terminal/button.css'
 
-export default function Button({ type, text, name, state, setState, timeframe, numOfReports }) {
+export default function Button({ type, text, name, state, setState, timeframe, numOfReports, segment, isTurnedOf, }) {
 
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
@@ -50,16 +50,15 @@ export default function Button({ type, text, name, state, setState, timeframe, n
     case 'periods':
 
       styles.padding = '5px 25px'
-
       if (timeframe == 'quarterly') {
-        styles.padding = '5px 12.9px'
+        styles.padding = '5px 14.2px'
 
       }
 
-
-      if (Number(name) > numOfReports + 4) {
+      if (Number(name) > numOfReports + 3 && segment != 'dcf') {
         turnedOf = true
       }
+
 
       if (state == name) {
         styles.backgroundColor = 'var(--green-light)'

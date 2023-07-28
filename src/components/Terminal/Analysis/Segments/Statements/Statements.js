@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import '../../../../../css/terminal/segments/statements.css'
 
 import Button from '../../../Button'
-import Table from './Table'
+import Table from '../../Table_For_Chart'
 import Chart from './StatementsChart'
 
 export default function Statements({ stock }) {
@@ -40,6 +40,8 @@ export default function Statements({ stock }) {
           { id: 'incomeTaxExpense', label: 'Taxes', type: 'second', collapsible: false, color: 'rgb(231, 12, 12)' },
 
           { id: 'netIncome', label: 'Net Income', type: 'main', collapsible: false, color: 'rgb(251, 192, 45)' },
+
+          { id: 'EPS', label: 'EPS', type: 'main', collapsible: false, color: 'rgb(251, 192, 45)' },
           // Add more metrics as needed
         ];
         break;
@@ -101,7 +103,7 @@ export default function Statements({ stock }) {
     case 'incomeStatement':
       allReports = stock.fundamentals.financialStatements.Income_Statement[`${timeframe}`]
       keys = Object.keys(allReports);
-      lastFiveKeys = keys.slice(0, Number(periods));
+      lastFiveKeys = keys.slice(0, Number(periods) + (timeframe == 'yearly' ? 1 : 4));
       reports = {};
 
       for (const key of lastFiveKeys) {
@@ -114,7 +116,7 @@ export default function Statements({ stock }) {
     case 'balanceSheet':
       allReports = stock.fundamentals.financialStatements.Balance_Sheet[`${timeframe}`]
       keys = Object.keys(allReports);
-      lastFiveKeys = keys.slice(0, Number(periods));
+      lastFiveKeys = keys.slice(0, Number(periods) + (timeframe == 'yearly' ? 1 : 4));
       reports = {};
 
 
@@ -128,7 +130,7 @@ export default function Statements({ stock }) {
     case 'cashflowStatement':
       allReports = stock.fundamentals.financialStatements.Cash_Flow[`${timeframe}`]
       keys = Object.keys(allReports);
-      lastFiveKeys = keys.slice(0, Number(periods));
+      lastFiveKeys = keys.slice(0, Number(periods) + (timeframe == 'yearly' ? 1 : 4));
       reports = {};
 
       for (const key of lastFiveKeys) {
@@ -141,7 +143,7 @@ export default function Statements({ stock }) {
     case 'statistics':
       allReports = stock.fundamentals.financialStatements.Statistics[`${timeframe}`]
       keys = Object.keys(allReports);
-      lastFiveKeys = keys.slice(0, Number(periods));
+      lastFiveKeys = keys.slice(0, Number(periods) + (timeframe == 'yearly' ? 1 : 4));
       reports = {};
 
       for (const key of lastFiveKeys) {
@@ -158,7 +160,7 @@ export default function Statements({ stock }) {
     <>
       <div className="statements-header">
         <div style={{ display: 'flex', alignItems: 'center', gap: '0px', width: `${window.innerWidth < 2000 ? '320px' : '350px'}` }}>
-          <img style={{ width: `20%`, backgroundColor: 'white', padding: `${window.innerWidth < 2000 ? '10px' : '20px'}`, borderRadius: '', height: `20%`, marginLeft: '30px' }} src={`https://eodhistoricaldata.com/${stock.general.LogoURL}`} />
+          <img style={{ width: `15%`, backgroundColor: 'white', padding: `${window.innerWidth < 2000 ? '10px' : '20px'}`, borderRadius: '', height: `20%`, marginLeft: '30px' }} src={`https://eodhistoricaldata.com/${stock.general.LogoURL}`} />
           <h2 className='statements-ticker'>{stock.ticker}</h2>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>

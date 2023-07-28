@@ -15,6 +15,7 @@ export default function Header({
 }) {
   return (
     <div>
+
       <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
         <div className="modes">
           <Button
@@ -85,7 +86,8 @@ export default function Header({
               name={'5'}
               state={periods}
               setState={() => setperiods('5')}
-              numOfReports={Object.keys(allReports).length} />
+              numOfReports={Object.keys(allReports).length}
+              segment={mode} />
 
             <Button
               text={'10 years'}
@@ -93,7 +95,8 @@ export default function Header({
               name={'10'}
               state={periods}
               setState={() => setperiods('10')}
-              numOfReports={Object.keys(allReports).length} />
+              numOfReports={Object.keys(allReports).length}
+              segment={mode} />
 
             <Button
               text={'20 years'}
@@ -101,7 +104,8 @@ export default function Header({
               name={'20'}
               state={periods}
               setState={() => setperiods('20')}
-              numOfReports={Object.keys(allReports).length} />
+              numOfReports={Object.keys(allReports).length}
+              segment={mode} />
 
             <Button
               text={'30 years'}
@@ -109,7 +113,8 @@ export default function Header({
               name={'30'}
               state={periods}
               setState={() => setperiods('30')}
-              numOfReports={Object.keys(allReports).length} />
+              numOfReports={Object.keys(allReports).length}
+              segment={mode} />
           </div>
         }
 

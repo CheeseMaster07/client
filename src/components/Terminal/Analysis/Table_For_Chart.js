@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 
-import '../../../../../css/terminal/segments/table.css'
-import '../../../../../css/colors.css'
+import '../../../css/terminal/segments/table.css'
+import '../../../css/colors.css'
 
-import dots_png from '../../../../../logos/dots.png'
-import rightArrow_png from '../../../../../logos/right-arrow.png'
-import downArrow_png from '../../../../../logos/down-arrow.png'
+import dots_png from '../../../logos/dots.png'
+import rightArrow_png from '../../../logos/right-arrow.png'
+import downArrow_png from '../../../logos/down-arrow.png'
 
-import TableRow from './TableRow'
-import ExtrasMenu from './ExtrasMenu'
+import TableRow from './TableRow_For_Chart'
+import ExtrasMenu from './Segments/Statements/ExtrasMenu'
 
-import { getTableState } from '../../../../../actions/table'
+import { getTableState } from '../../../actions/table'
 
 
 export default function Table({ data, metrics, timeframe, IS }) {
@@ -34,6 +34,8 @@ export default function Table({ data, metrics, timeframe, IS }) {
     'freeCashFlow',
     'sharesOutstanding',
     'returnOnAssets',
+    'dividendsPerShare',
+    'dividendsYield',
   ]
 
   metrics.forEach(metric => {
@@ -50,7 +52,7 @@ export default function Table({ data, metrics, timeframe, IS }) {
   })
 
   metrics.forEach(metric => {
-    if (metric.id == 'totalRevenue') {
+    if (metric.id == 'totalRevenue' || metric.id == 'dividendsPerShare') {
       extras_obj[metric.id] = { YoY: true, margin: false }
     } else if (metric.id == 'grossProfit') {
       extras_obj[metric.id] = { YoY: false, margin: true }
@@ -110,8 +112,14 @@ export default function Table({ data, metrics, timeframe, IS }) {
     fiscalReports.push(data[`${period}`])
   })
 
+  const lastPeriods = fiscalPeriods.splice(fiscalPeriods.length - (timeframe == 'yearly' ? 1 : 4), (timeframe == 'yearly' ? 1 : 4))
+  const lastReports = fiscalReports.splice(fiscalReports.length - (timeframe == 'yearly' ? 1 : 4), (timeframe == 'yearly' ? 1 : 4))
+  lastReports.reverse()
+
   fiscalPeriods.reverse()
   fiscalReports.reverse()
+  console.log(fiscalReports)
+
 
   return (
     <div className='statements-table-container'>
@@ -119,7 +127,7 @@ export default function Table({ data, metrics, timeframe, IS }) {
         <colgroup>
           <col style={{ width: '320px', textAlign: 'left', backgroundColor: 'var(--green-middark)' }} /> {/* Fixed width for the first column */}
           {fiscalPeriods.map((period) => (
-            <col key={period} style={{ width: `${86 / fiscalPeriods.length}%` }} />
+            <col key={period} style={{ width: `${86.3 / fiscalPeriods.length}%` }} />
           ))}
 
         </colgroup>
@@ -166,7 +174,8 @@ export default function Table({ data, metrics, timeframe, IS }) {
 
                 />
                 {extras[metric.id]?.YoY ?
-                  <TableRow
+
+                  < TableRow
                     typeOfRow={'YoY'}
                     metric={metric}
                     isToggledMetrics={isToggledMetrics}
@@ -177,10 +186,13 @@ export default function Table({ data, metrics, timeframe, IS }) {
                     setIsExtrasMenuToggled={setIsExtrasMenuToggled}
                     extras={extras}
                     setExtras={setExtras}
+                    lastReports={lastReports}
                     fiscalReports={fiscalReports}
                     IS={IS}
+                    timeframe={timeframe}
 
                   />
+
                   :
                   ''
                 }

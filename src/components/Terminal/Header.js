@@ -83,7 +83,7 @@ export default function Header({ mode }) {
                   <img className='segment-logo' src={competition_png} />
                   <p>Competition</p>
                 </div>
-                <div style={segment == 'segments' ? { backgroundColor: 'var(--green-light)' } : {}} onClick={() => handleClick('segments')} className="header-icon">
+                {/* <div style={segment == 'segments' ? { backgroundColor: 'var(--green-light)' } : {}} onClick={() => handleClick('segments')} className="header-icon">
                   <img className='segment-logo' src={segments_png} />
                   <p>Segments</p>
                 </div>
@@ -94,7 +94,7 @@ export default function Header({ mode }) {
                 <div style={segment == 'shorts' ? { backgroundColor: 'var(--green-light)' } : {}} onClick={() => handleClick('shorts')} className="header-icon">
                   <img className='segment-logo' src={shorts_png} />
                   <p>Shorts</p>
-                </div>
+                </div> */}
                 <div style={segment == 'insider' ? { backgroundColor: 'var(--green-light)' } : {}} onClick={() => handleClick('insider')} className="header-icon">
                   <img className='segment-logo' src={insider_png} />
                   <p>Insider</p>

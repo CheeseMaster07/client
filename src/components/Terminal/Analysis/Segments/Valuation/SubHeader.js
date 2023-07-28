@@ -64,6 +64,9 @@ export default function SubHeader({ metrics, setMetrics }) {
       <div>
         <ToggleMetric_part metric={metrics[metrics.length - 1]} isToggledMetrics={isToggledMetrics} setIsToggledMetrics={setIsToggledMetrics} />
       </div>
+      <div>
+        <ToggleMetric_part metric={metrics[metrics.length - 2]} isToggledMetrics={isToggledMetrics} setIsToggledMetrics={setIsToggledMetrics} />
+      </div>
 
 
     </div>

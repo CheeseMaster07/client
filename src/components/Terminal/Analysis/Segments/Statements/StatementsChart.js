@@ -8,8 +8,6 @@ import '../../../../../css/terminal/chart.css'
 
 export default function StatementsChart({ data, state, metrics }) {
 
-
-
   const tableState = useSelector(state => state.tableState)
 
   const [chartOptions, setChartOptions] = useState({
@@ -38,7 +36,7 @@ export default function StatementsChart({ data, state, metrics }) {
             } else if (Math.abs(value) >= 1000) {
               return (value / 1000).toFixed(1) + 'K';
             } else {
-              return value;
+              return value?.toFixed(1);
             }
           },
           color: 'white'
@@ -92,7 +90,7 @@ export default function StatementsChart({ data, state, metrics }) {
               } else if (Math.abs(data.raw) >= 1000) {
                 return (data.raw / 1000).toFixed(1) + 'K';
               } else {
-                return data.raw;
+                return data.raw?.toFixed(2);
               }
             } else if (data.dataset.yAxisID == 'y2') {
               return (data.raw * 100).toFixed(2) + '%';
@@ -132,6 +130,10 @@ export default function StatementsChart({ data, state, metrics }) {
     }
     fiscalReports.push(data[`${period}`])
   })
+
+  fiscalPeriods.splice(fiscalPeriods.length - (state.timeframe == 'yearly' ? 1 : 4), (state.timeframe == 'yearly' ? 1 : 4))
+  fiscalReports.splice(fiscalReports.length - (state.timeframe == 'yearly' ? 1 : 4), (state.timeframe == 'yearly' ? 1 : 4))
+
 
   fiscalPeriods.reverse()
   fiscalReports.reverse()
