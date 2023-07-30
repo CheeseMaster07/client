@@ -20,6 +20,9 @@ import shareholders_png from '../../logos/shareholders.png'
 import secFilings_png from '../../logos/secFilings.png'
 import export_png from '../../logos/export.png'
 
+import screener_png from '../../logos/screener.png'
+
+
 export default function Header({ mode }) {
   const navigate = useNavigate()
   const location = useLocation();
@@ -117,7 +120,10 @@ export default function Header({ mode }) {
                 </div>
               </>
               :
-              <div className="header-icon">Screener</div>
+              <div style={segment == 'screener' ? { backgroundColor: 'var(--green-light)' } : {}} className="header-icon">
+                <img className='segment-logo' src={screener_png} />
+                <p>Screener</p>
+              </div>
             }
 
           </div>

@@ -40,6 +40,16 @@ export default function Button({ type, text, name, state, setState, timeframe, n
       }
 
       break;
+    case 'preset':
+      styles.padding = '5px 35px'
+      if (state == name) {
+        styles.backgroundColor = 'var(--green-light)'
+      }
+      if (name == 'custom') {
+        styles.marginRight = '80px'
+      }
+
+      break;
     case 'yearly-quarterly':
       styles.padding = '5px 25px'
 

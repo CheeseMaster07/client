@@ -57,8 +57,9 @@ export default function Statements({ stock }) {
           { id: 'nonCurrentLiabilitiesTotal', label: 'Non-current Liabilities', type: 'totalLiab-sub', collapsible: false },
 
           { id: 'totalStockholderEquity', label: 'Total Equity', type: 'main', collapsible: true, color: 'rgb(245, 127, 23)' },
-          { id: '', label: "Shareholders' equiy", type: 'totalStockholderEquity-sub', collapsible: false },
-          { id: '', label: 'Minority Interest', type: 'totalStockholderEquity-sub', collapsible: false },
+          { id: 'commonStock', label: "Common Stock", type: 'totalStockholderEquity-sub', collapsible: true },
+          { id: 'retainedEarnings', label: "Retained Earnings", type: 'commonStock-sub', collapsible: false },
+          { id: 'preferredStockTotalEquity', label: 'Preferred Stock', type: 'totalStockholderEquity-sub', collapsible: false },
           // Add more metrics as needed
         ];
         break;

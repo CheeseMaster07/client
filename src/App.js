@@ -13,7 +13,8 @@ import Auth from './components/Homepage/Auth'
 
 import Terminal_Header from './components/Terminal/Header'
 import Terminal_Sidebar from './components/Terminal/Sidebar'
-import Content from './components/Terminal/Analysis/Content';
+import Analysis_Content from './components/Terminal/Analysis/Content'
+import Screener_Content from './components/Terminal/Screener/Content'
 
 
 
@@ -71,20 +72,20 @@ export default function App() {
             </>
           } >
             <Route path=':id'>
-              <Route path="overview" element={<Content segment={'overview'} />} />
-              <Route path="statements" element={<Content segment={'statements'} />} />
-              <Route path="valuation" element={<Content segment={'valuation'} />} />
-              <Route path="competition" element={<Content segment={'competition'} />} />
-              <Route path="forecasts" element={<Content segment={'forecasts'} />} />
-              <Route path="segments" element={<Content segment={'segments'} />} />
-              <Route path="insider" element={<Content segment={'insider'} />} />
-              <Route path="dividends" element={<Content segment={'dividends'} />} />
-              <Route path="shorts" element={<Content segment={'shorts'} />} />
-              <Route path="buybacks" element={<Content segment={'buybacks'} />} />
-              <Route path="management" element={<Content segment={'management'} />} />
-              <Route path="shareholders" element={<Content segment={'shareholders'} />} />
-              <Route path="sec-filings" element={<Content segment={'sec-filings'} />} />
-              <Route path="export" element={<Content segment={'export'} />} />
+              <Route path="overview" element={<Analysis_Content segment={'overview'} />} />
+              <Route path="statements" element={<Analysis_Content segment={'statements'} />} />
+              <Route path="valuation" element={<Analysis_Content segment={'valuation'} />} />
+              <Route path="competition" element={<Analysis_Content segment={'competition'} />} />
+              <Route path="forecasts" element={<Analysis_Content segment={'forecasts'} />} />
+              <Route path="segments" element={<Analysis_Content segment={'segments'} />} />
+              <Route path="insider" element={<Analysis_Content segment={'insider'} />} />
+              <Route path="dividends" element={<Analysis_Content segment={'dividends'} />} />
+              <Route path="shorts" element={<Analysis_Content segment={'shorts'} />} />
+              <Route path="buybacks" element={<Analysis_Content segment={'buybacks'} />} />
+              <Route path="management" element={<Analysis_Content segment={'management'} />} />
+              <Route path="shareholders" element={<Analysis_Content segment={'shareholders'} />} />
+              <Route path="sec-filings" element={<Analysis_Content segment={'sec-filings'} />} />
+              <Route path="export" element={<Analysis_Content segment={'export'} />} />
             </Route>
 
           </Route>
@@ -92,8 +93,11 @@ export default function App() {
             <>
               < Terminal_Header mode={'screener'} />
               < Terminal_Sidebar mode={'screener'} />
+              <Screener_Content segment={'screener'} />
             </>
+
           } />
+
         </Route>
       </Routes>
     </GoogleOAuthProvider>
