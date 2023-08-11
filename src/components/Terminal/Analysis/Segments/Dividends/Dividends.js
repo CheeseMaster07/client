@@ -36,7 +36,7 @@ export default function Dividends({ stock }) {
 
   let keys
   let lastFiveKeys
-
+  console.log(stock.dividendsData?.everyOne)
   if (!stock.dividendsData?.everyOne) {
     return (
       <>

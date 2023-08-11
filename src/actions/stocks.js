@@ -27,7 +27,6 @@ export const getOneStock = (ticker) => async (dispatch) => {
 
 export const setSearchedStocks_action = (searchedStocks) => async (dispatch) => {
   try {
-
     dispatch({ type: SET_SEARCHED_STOCKS, payload: searchedStocks });
   } catch (error) {
     console.log(error.message)

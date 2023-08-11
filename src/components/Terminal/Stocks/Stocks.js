@@ -17,7 +17,15 @@ export default function Stocks({ searchQuery, type }) {
 
   useEffect(() => {
     dispatch(getStocks())
+    //dispatch(setSearchedStocks_action(stocks))
   }, [])
+
+  useEffect(() => {
+    if (type != 'homepage') {
+      setSearchedStocks(stocks)
+
+    }
+  }, [stocks])
 
   useEffect(() => {
     dispatch(setSearchedStocks_action(searchedStocks))

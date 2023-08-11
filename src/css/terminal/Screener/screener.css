@@ -1,0 +1,112 @@
+@import '../../colors.css';
+
+.screenerTable-container {
+  margin-top: 10px;
+  position: absolute;
+  left: 0;
+}
+
+.screenerTable {
+  border-collapse: collapse;
+  overflow: auto;
+  border: solid 2px var(--green-middle);
+  border-radius: 5px;
+}
+
+.screenerTable tbody {
+  overflow-y: scroll;
+  /* overflow-x: hidden; */
+  max-height: 1150px;
+  width: 100%;
+  position: absolute;
+}
+
+
+.screenerTable td {
+  border-left: solid 2px var(--green-middle);
+  padding-left: 10px;
+  font-weight: 500;
+}
+
+.screenerTable tbody::-webkit-scrollbar {
+  width: 6px;
+
+}
+
+
+.screenerTable tbody::-webkit-scrollbar-track {
+  background-color: transparent;
+  display: hidden;
+}
+
+
+.screenerTable tbody::-webkit-scrollbar-thumb {
+  background-color: var(--green-light);
+  border-radius: 2px;
+}
+
+.columnHeader {
+  background-color: var(--green-middark);
+  font-size: 16px;
+}
+
+.columnHeader-label {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 2px 0;
+}
+
+.columnHeader-description {
+  font-size: 15px;
+  font-style: italic;
+  font-weight: 400;
+  color: #B1B1B1;
+  padding: 1px 0px;
+  border-top: solid 2px var(--green-middle);
+  border-bottom: solid 2px var(--green-middle);
+}
+
+.columnHeader-min-max {
+  padding: 4px 0;
+  padding-bottom: 8px;
+}
+
+.columnHeader-arrow-button {
+  height: 17px;
+  background-color: #22302a;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+}
+
+.screenerTable input {
+  background-color: var(--green-dark);
+  border: solid 2px var(--green-middle);
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  width: 45px;
+  padding: 2px 5px;
+}
+
+.screenerTable col {
+  border: solid 2px var(--green-middle);
+
+}
+
+.sortBy-color-bar {
+  width: 100%;
+  height: 2px;
+  background-color: var(--green-light);
+  position: absolute;
+  bottom: -1px;
+  z-index: 3;
+}
+
+.largeNumUnit {
+  position: absolute;
+  font-size: 16px;
+  font-weight: 400;
+  top: 3px;
+  right: 6px;
+}

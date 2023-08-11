@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux';
-import Chart from '../../Chart'
+import Chart from './LineChart'
 
 import ChartLegend from './ChartLegend'
 
@@ -8,6 +8,15 @@ export default function Multiples({ metrics, stock, periods, reports }) {
   const currentYear = new Date().getFullYear()
 
   const valuationState = useSelector(state => state.valuationState)
+  // const coordinates = useSelector(state => state.coordinates)
+
+  // useEffect(() => {
+  //   console.log(coordinates)
+  // }, [coordinates])
+
+  function mousemoveHandler() {
+    console.log('yes')
+  }
 
   const [chartOptions, setChartOptions] = useState({
     maintainAspectRatio: false,

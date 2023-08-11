@@ -4,7 +4,7 @@ import Button from '../Button'
 
 import '../../../css/terminal/segments/statements.css'
 
-export default function Header({ preset, setPreset }) {
+export default function Header({ preset, setPreset, customize, setCustomize }) {
   return (
     <>
       <div>
@@ -13,11 +13,11 @@ export default function Header({ preset, setPreset }) {
 
           <div className="modes">
             <Button
-              text={'Custom'}
+              text={'Customize'}
               type={'preset'}
               name={'custom'}
-              state={preset}
-              setState={() => setPreset('custom')}
+              state={customize}
+              setState={() => setCustomize(!customize)}
             />
 
             <Button
@@ -55,12 +55,12 @@ export default function Header({ preset, setPreset }) {
               state={preset}
               setState={() => setPreset('buybacks')} />
 
-            <Button
+            {/* <Button
               text={'Forecast'}
               type={'preset'}
               name={'forecast'}
               state={preset}
-              setState={() => setPreset('forecast')} />
+              setState={() => setPreset('forecast')} /> */}
 
             <Button
               text={'Financial Stability'}

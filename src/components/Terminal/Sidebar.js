@@ -51,7 +51,7 @@ export default function Sidebar({ mode }) {
           <img className='arrow' src={arrow_png} />
         </div>
       </div>
-      <div className='sidebar-middle'>
+      <div style={window.location.pathname.includes('screener') ? { zIndex: '-1' } : {}} className='sidebar-middle'>
         <Stocks searchQuery={searchQuery.toUpperCase()} />
       </div>
       <div className='sidebar-bottom'></div>

@@ -16,6 +16,8 @@ import Terminal_Sidebar from './components/Terminal/Sidebar'
 import Analysis_Content from './components/Terminal/Analysis/Content'
 import Screener_Content from './components/Terminal/Screener/Content'
 
+import LineChart from './components/Terminal/Analysis/Segments/Valuation/LineChart'
+
 
 
 export default function App() {
@@ -89,6 +91,12 @@ export default function App() {
             </Route>
 
           </Route>
+          <Route path="test" element={
+            <>
+              <LineChart />
+            </>
+
+          } />
           <Route path="screener" element={
             <>
               < Terminal_Header mode={'screener'} />

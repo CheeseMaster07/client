@@ -3,6 +3,7 @@ import { stocks, oneStock, searchedStocks } from './stocks';
 import { monthlyAnnually } from './pricing';
 import { tableState } from './table';
 import { valuationState } from './analysis';
+import { setCoordinates } from './chart';
 import auth from './auth';
 
 const rootReducer = combineReducers({
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   auth: auth,
   monthlyAnnually: monthlyAnnually,
   tableState: tableState,
-  valuationState: valuationState
+  valuationState: valuationState,
+  // coordinates: setCoordinates,
 
 });
 

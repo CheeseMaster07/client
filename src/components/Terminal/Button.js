@@ -45,9 +45,22 @@ export default function Button({ type, text, name, state, setState, timeframe, n
       if (state == name) {
         styles.backgroundColor = 'var(--green-light)'
       }
+      if (name == 'custom' && state) {
+        styles.backgroundColor = 'var(--green-light)'
+
+      }
       if (name == 'custom') {
         styles.marginRight = '80px'
       }
+
+      break;
+    case 'category':
+      styles.padding = '5px 0px'
+      styles.width = '145px'
+      if (state == name) {
+        styles.backgroundColor = 'var(--green-light)'
+      }
+
 
       break;
     case 'yearly-quarterly':

@@ -3,10 +3,10 @@
 .dcf-container {
   width: 100%;
   display: flex;
+  justify-content: center;
 }
 
 .dcf {
-  margin-left: 50px;
   margin-top: 10px;
   width: 55%;
   display: inline-block;
@@ -114,4 +114,49 @@ input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.results-container {
+  margin-top: 15px;
+  width: 80%;
+  display: inline-block;
+
+}
+
+.results {
+  font-size: 20px;
+  font-weight: 500;
+
+}
+
+.dcf-table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+}
+
+.dcf-table td {
+  padding-bottom: 8px;
+  padding-top: 8px;
+  text-align: center;
+}
+
+.dcf-table thead th {
+  padding-bottom: 8px;
+  padding-top: 8px;
+  text-align: center;
+  font-size: 24px;
+
+}
+
+.dcf-table tbody {
+  border: solid 2px var(--green-middle);
+  background-color: var(--green-middark);
+  border-collapse: collapse;
+
+}
+
+.dcf-table th {
+  padding-left: 10px;
+  text-align: left;
 }

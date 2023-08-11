@@ -6,6 +6,9 @@ import '../../../css/terminal/stockBar.css'
 import '../../../css/colors.css'
 
 export default function Stock({ stock, index, type }) {
+
+  //console.log(stock)
+
   const navigate = useNavigate()
   function isOdd(number) {
     return number % 2 !== 0;
@@ -19,7 +22,7 @@ export default function Stock({ stock, index, type }) {
     return (
 
       <div className='homepage-stockBar' onClick={() => { window.open(`/terminal/analysis/${stock.ticker}`, '_blank') }}>
-        <a style={{ textDecoration: 'none', color: 'white', cursor: 'pointer' }}>{stock.general.Name}</a>
+        <a style={{ textDecoration: 'none', color: 'white', cursor: 'pointer' }}>{stock.general?.Name}</a>
       </div>
     )
   } else {

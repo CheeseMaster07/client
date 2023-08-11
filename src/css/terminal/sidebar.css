@@ -14,20 +14,22 @@
 
 .sidebar-top {
   background-color: var(--green-middle);
-  height: 190px;
+  min-height: 212px;
   width: 100%;
   display: flex;
   flex-direction: column;
   text-align: center;
   justify-content: flex-end;
+  z-index: 2;
 }
 
 .sidebar-middle {
   background-color: var(--green-dark);
+  border-top: solid 2px var(--green-middle);
   max-height: calc(100vh - 250px);
   width: 100%;
   box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.25);
-  z-index: 1;
+  z-index: 2;
   overflow-y: scroll;
   overflow-x: hidden;
 
@@ -140,9 +142,10 @@
   border-top: solid 1px var(--green-middark);
   height: 16px;
   margin-top: 4px;
+  background-color: #22302a;
 }
 
 .arrow {
-  width: 12px;
+  width: 13px;
   margin-bottom: 1px;
 }
