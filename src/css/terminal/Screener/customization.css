@@ -9,7 +9,7 @@
   top: 60px;
   box-shadow: -2px 0px 15px 3px rgba(0, 0, 0, 0.39);
   border-radius: 10px;
-overflow: hidden;
+  overflow: hidden;
 }
 
 .customization-header {
@@ -24,19 +24,19 @@ overflow: hidden;
 .customization-header h3 {
   margin: 0;
   font-size: 50px;
-  
+
 }
 
 .customization-categories {
   text-align: center;
   border-bottom: 2px solid var(--green-midlight);
-  
+
 }
 
 .customization-categories h3 {
   font-size: 30px;
   margin: 15px;
-  
+
 }
 
 .customization-selected {
@@ -45,7 +45,8 @@ overflow: hidden;
   border-right: 2px solid var(--green-midlight);
 
 }
-.customization-selected p{
+
+.customization-selected p {
   font-size: 28px;
   font-weight: bold;
   padding-top: 15px;
@@ -55,6 +56,7 @@ overflow: hidden;
   border-bottom: 1px solid var(--green-midlight);
 
 }
+
 .selected-metric {
   border-bottom: 1px solid var(--green-midlight);
   padding-top: 8px;
@@ -64,8 +66,9 @@ overflow: hidden;
   padding-left: 12px;
   position: relative;
 }
+
 .selected-metric p {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 400;
   padding: 0;
   text-align: left;
@@ -77,13 +80,14 @@ overflow: hidden;
   border-radius: 3px;
 
 }
+
 .deleteButton:hover {
   background-color: rgba(255, 255, 255, 0.15);
 }
 
 .customization-extras-menu {
   position: absolute;
-  background-color:white;
+  background-color: white;
   right: -30px;
 }
 
@@ -95,12 +99,28 @@ overflow: hidden;
 
 .customization-metrics {
   width: 100%;
-  height: 480px;
+  height: 35%;
   border-bottom: 2px solid var(--green-midlight);
 
 }
 
+.screener-metric-button {
+  border: solid 2px var(--green-midlight);
+  display: inline-block;
+  padding: 5px 0px;
+  width: 180px;
+  border-radius: 10px;
+  text-align: center;
+  user-select: none;
+  cursor: pointer;
+}
+
+.screener-metric-button:hover {
+  background-color: rgba(255, 255, 255, .075);
+}
+
+
 .customization-desc {
   width: 100%;
-  height: 480px;
+  height: 100%;
 }

@@ -14,7 +14,7 @@ export default function Header({
 
 }) {
   return (
-    <div>
+    <div >
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
         <div className="modes">

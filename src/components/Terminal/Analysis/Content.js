@@ -132,7 +132,8 @@ export default function ({ segment }) {
         display: 'inline-block',
         float: 'right',
         zIndex: '-1',
-        overflow: 'hidden'
+        // overflow: 'hidden'
+        // overflowY: 'scroll',
       }}>
         {element}
       </div>

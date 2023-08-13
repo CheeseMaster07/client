@@ -83,7 +83,7 @@ export default function Dcf({ stock, periods }) {
   }
 
   return (
-    <>
+    <div className='whole-dcf-container'>
       <div className='dcf-container'>
         <div className='dcf'>
           <h2 style={{ textAlign: 'center', fontSize: '35px', marginTop: '15px', marginBottom: '15px' }}>DCF for {periods} years</h2>
@@ -386,7 +386,7 @@ export default function Dcf({ stock, periods }) {
         ''}
 
 
-    </>
+    </div>
 
 
   )

@@ -146,7 +146,7 @@ export const categories = {
   growth: {
     revenueGrowth: growth_Array_Full.map(desc => {
       return {
-        label: 'Revenue Growth',
+        label: 'Revenue',
         desc: desc,
         id: 'revenueGrowth',
         segment: 'growth',
@@ -156,7 +156,7 @@ export const categories = {
     }),
     operatingIncomeGrowth: growth_Array_Full.filter(desc => desc != 'Forward').map(desc => {
       return {
-        label: 'Operating Income Growth',
+        label: 'Operating Income',
         desc: desc,
         id: 'operatingIncomeGrowth',
         segment: 'growth',
@@ -166,7 +166,7 @@ export const categories = {
     }),
     netIncomeGrowth: growth_Array_Full.filter(desc => desc != 'Forward').map(desc => {
       return {
-        label: 'Net Income Growth',
+        label: 'Net Income',
         desc: desc,
         id: 'netIncomeGrowth',
         segment: 'growth',
@@ -176,7 +176,7 @@ export const categories = {
     }),
     EPSGrowth: growth_Array_Full.filter(desc => desc != 'Forward').map(desc => {
       return {
-        label: 'EPS Growth',
+        label: 'EPS',
         desc: desc,
         id: 'EPSGrowth',
         segment: 'growth',

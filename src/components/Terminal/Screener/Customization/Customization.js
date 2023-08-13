@@ -45,7 +45,7 @@ export default function Customization({ presetList, setPresetList, }) {
       <div style={{ height: '100%', display: 'flex' }}>
         <Selected presetList={presetList} setPresetList={setPresetList} isDescMenuToggled={isDescMenuToggled} setIsDescMenuToggled={setIsDescMenuToggled} />
         <div style={{ height: '100%', width: '72.5%' }}>
-          <Metrics />
+          <Metrics category={category} presetList={presetList} />
           <Desc />
         </div>
 

@@ -12,6 +12,7 @@ export default function Selected({ presetList, setPresetList, isDescMenuToggled,
   return (
     <div className="customization-selected">
       <p>Selected</p>
+
       {presetList.map((metric, index) => {
         if (metric.label != 'ticker')
           return <div className="selected-metric">
@@ -20,7 +21,7 @@ export default function Selected({ presetList, setPresetList, isDescMenuToggled,
                 <div className='deleteButton' style={alignCenterStyle} onClick={() => {
                   setPresetList(presetList.filter(listMetric => listMetric != metric))
                 }}>
-                  <img src={delete_png} style={{ height: '19px', userSelect: 'none' }} />
+                  <img src={delete_png} style={{ height: '18px', userSelect: 'none' }} />
 
                 </div>
 
@@ -47,7 +48,7 @@ export default function Selected({ presetList, setPresetList, isDescMenuToggled,
 
                   return updatedState;
                 });
-              }} src={dots_png} style={{ height: '22px', userSelect: 'none', cursor: 'pointer', zIndex: '2' }} />
+              }} src={dots_png} style={{ height: '21px', userSelect: 'none', cursor: 'pointer', zIndex: '2' }} />
             </div>
           </div>
       })}

@@ -1,5 +1,5 @@
 import { categories } from './Categories'
-console.log(categories)
+// console.log(categories)
 // ADD TYPE: PRECENY; LARGE NUMBER ETC
 
 function chooseMetric(segment, id, desc1, desc2) {
