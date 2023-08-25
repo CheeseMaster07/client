@@ -103,10 +103,14 @@ export default function Statements({ stock }) {
   switch (financialStatement) {
     case 'incomeStatement':
       allReports = stock.fundamentals.financialStatements.Income_Statement[`${timeframe}`]
-      keys = Object.keys(allReports);
-      lastFiveKeys = keys.slice(0, Number(periods) + (timeframe == 'yearly' ? 1 : 4));
-      reports = {};
 
+      keys = Object.keys(allReports);
+      keys.pop()
+      keys.unshift('TTM')
+      lastFiveKeys = keys.slice(0, Number(periods) + 1 + (timeframe == 'yearly' ? 1 : 4));
+      reports = {};
+      // console.log(lastFiveKeys)
+      // console.log(keys)
       for (const key of lastFiveKeys) {
         reports[key] = allReports[key];
       }
@@ -131,7 +135,9 @@ export default function Statements({ stock }) {
     case 'cashflowStatement':
       allReports = stock.fundamentals.financialStatements.Cash_Flow[`${timeframe}`]
       keys = Object.keys(allReports);
-      lastFiveKeys = keys.slice(0, Number(periods) + (timeframe == 'yearly' ? 1 : 4));
+      keys.pop()
+      keys.unshift('TTM')
+      lastFiveKeys = keys.slice(0, Number(periods) + 1 + (timeframe == 'yearly' ? 1 : 4));
       reports = {};
 
       for (const key of lastFiveKeys) {
@@ -144,7 +150,9 @@ export default function Statements({ stock }) {
     case 'statistics':
       allReports = stock.fundamentals.financialStatements.Statistics[`${timeframe}`]
       keys = Object.keys(allReports);
-      lastFiveKeys = keys.slice(0, Number(periods) + (timeframe == 'yearly' ? 1 : 4));
+      keys.pop()
+      keys.unshift('Current')
+      lastFiveKeys = keys.slice(0, Number(periods) + 1 + (timeframe == 'yearly' ? 1 : 4));
       reports = {};
 
       for (const key of lastFiveKeys) {

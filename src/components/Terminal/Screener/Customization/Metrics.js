@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { categories } from '../Categories'
 
 
-export default function Metrics({ category, presetList }) {
+export default function Metrics({ category, metric, setMetric, presetList }) {
   const categoryObj = categories[category]
   // console.log(categoryObj)
   // console.log(presetList)
@@ -37,17 +37,22 @@ export default function Metrics({ category, presetList }) {
     }
   }
 
-  console.log(sliceArray)
+  useEffect(() => {
+    console.log(metric)
+    if (!categoryObj?.[metric]) {
+      setMetric(categoryObj[Object.keys(categoryObj)[0]][0].id)
 
+    }
+  }, [category])
   return (
     <div className="customization-metrics">
       <div style={{ display: 'flex', gap: '10px', flexDirection: 'column', paddingLeft: '5px', paddingTop: '10px' }}>
         {sliceArray.map(slicing => {
           return <div style={{ display: 'flex', gap: '8px' }}>
             {Object.keys(categoryObj).slice(slicing.first, slicing.second).map(mapMetric => {
-              const metric = categoryObj[mapMetric][0]
-              return <div className='screener-metric-button'>
-                <p style={{ margin: '0', fontSize: '18px', fontWeight: '500' }}>{metric.label}</p>
+              const varMetric = categoryObj[mapMetric][0]
+              return <div onClick={() => setMetric(varMetric.id)} className='screener-metric-button' style={varMetric.id == metric ? { backgroundColor: 'var(--green-light)', borderColor: 'rgba(255, 255, 255, .7)' } : {}}>
+                <p style={{ margin: '0', fontSize: '17px', fontWeight: '500' }}>{varMetric.label}</p>
               </div>
             })}
           </div>

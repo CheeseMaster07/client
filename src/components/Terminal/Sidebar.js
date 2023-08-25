@@ -14,9 +14,12 @@ import arrow_png from '../../logos/arrow.png'
 
 import Stocks from './Stocks/Stocks'
 
+import { searchQuery_action } from '../../actions/stocks'
+
 
 export default function Sidebar({ mode }) {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const handleClick = (path) => {
     navigate(`/terminal/${path}`)
@@ -24,6 +27,7 @@ export default function Sidebar({ mode }) {
 
   const stocks = useSelector((state) => state.stocks)
   const searchedStocks = useSelector((state) => state.searchedStocks)
+  const screenerSearchedStocksLength = useSelector((state) => state.searchedStocksLength)
 
   const [searchQuery, setSearchQuery] = useState('')
 
@@ -31,10 +35,14 @@ export default function Sidebar({ mode }) {
     setSearchQuery(e.target.value)
   }
 
+  useEffect(() => {
+    dispatch(searchQuery_action(searchQuery))
+  }, [searchQuery])
+
   return (
     <div className='sidebar'>
       <div className='sidebar-top'>
-        <input onChange={handleChange} className='sidebar-searchbar' type='text' placeholder='Search...' />
+        <input onChange={handleChange} className='sidebar-searchbar' type='text' placeholder='Search...' autoComplete="off" />
         <div className='analysis-screener'>
           <div style={mode == 'analysis' ? { backgroundColor: 'var(--green-light)' } : {}} onClick={() => handleClick('analysis')} className='analysis'>
             <img className='analysis-logo' src={analysis_png} />
@@ -46,9 +54,9 @@ export default function Sidebar({ mode }) {
           </div>
         </div>
         <div className='watchlist-button'>Watchlists</div>
-        <div className='query-results'>{searchedStocks.length}/{stocks.length}</div>
+        <div className='query-results'>{window.location.pathname.includes('screener') ? screenerSearchedStocksLength : searchedStocks.length}/{stocks.length}</div>
         <div className='arrow-bar'>
-          <img className='arrow' src={arrow_png} />
+          {/* <img className='arrow' src={arrow_png} /> */}
         </div>
       </div>
       <div style={window.location.pathname.includes('screener') ? { zIndex: '-1' } : {}} className='sidebar-middle'>

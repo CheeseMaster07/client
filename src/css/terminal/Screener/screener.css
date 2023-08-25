@@ -77,6 +77,7 @@
   cursor: pointer;
   user-select: none;
   position: relative;
+  /* z-index: 3; */
 }
 
 .screenerTable input {
@@ -109,4 +110,55 @@
   font-weight: 400;
   top: 3px;
   right: 6px;
+}
+
+.custom-select {
+  position: relative;
+  display: inline-block;
+  width: 160px;
+  padding: 0 14px;
+}
+
+.select-summary {
+  background-color: var(--green-dark);
+  border: solid 2px var(--green-middle);
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 2px 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.arrow-icon {
+  font-size: 15px;
+}
+
+.dropdown-options {
+  position: absolute;
+  background-color: var(--green-middle);
+  border: solid 2px var(--green-dark);
+  color: white;
+  max-height: 250px;
+  overflow-y: auto;
+  z-index: 1;
+  /* Hide the scrollbar */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Hide the scrollbar for Webkit (Chrome, Safari) */
+.dropdown-options::-webkit-scrollbar {
+  display: none;
+}
+
+.option {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.option:hover {
+  background-color: var(--green-dark);
 }

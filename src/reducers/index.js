@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { stocks, oneStock, searchedStocks } from './stocks';
+import { stocks, oneStock, searchedStocks, searchedStocksLength, searchQuery } from './stocks';
 import { monthlyAnnually } from './pricing';
 import { tableState } from './table';
 import { valuationState } from './analysis';
@@ -14,6 +14,8 @@ const rootReducer = combineReducers({
   monthlyAnnually: monthlyAnnually,
   tableState: tableState,
   valuationState: valuationState,
+  searchedStocksLength: searchedStocksLength,
+  searchQuery: searchQuery,
   // coordinates: setCoordinates,
 
 });

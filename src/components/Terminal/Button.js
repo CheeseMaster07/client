@@ -21,12 +21,16 @@ export default function Button({ type, text, name, state, setState, timeframe, n
     backgroundColor: ''
   }
 
+  const buttonBackgroundColor = 'var(--green-light)'
+  const buttonBorderColor = 'rgba(255, 255, 255, .75)'
+
   let turnedOf = false
 
   switch (type) {
     case 'statement':
       if (state == name) {
-        styles.backgroundColor = 'var(--green-light)'
+        styles.backgroundColor = buttonBackgroundColor
+        styles.borderColor = buttonBorderColor
 
       }
       if (window.innerWidth < 2000) {
@@ -36,17 +40,20 @@ export default function Button({ type, text, name, state, setState, timeframe, n
       break;
     case 'mode':
       if (state == name) {
-        styles.backgroundColor = 'var(--green-light)'
+        styles.backgroundColor = buttonBackgroundColor
+        styles.borderColor = buttonBorderColor
       }
 
       break;
     case 'preset':
       styles.padding = '5px 35px'
       if (state == name) {
-        styles.backgroundColor = 'var(--green-light)'
+        styles.backgroundColor = buttonBackgroundColor
+        styles.borderColor = buttonBorderColor
       }
       if (name == 'custom' && state) {
-        styles.backgroundColor = 'var(--green-light)'
+        styles.backgroundColor = buttonBackgroundColor
+        styles.borderColor = buttonBorderColor
 
       }
       if (name == 'custom') {
@@ -58,7 +65,8 @@ export default function Button({ type, text, name, state, setState, timeframe, n
       styles.padding = '5px 0px'
       styles.width = '145px'
       if (state == name) {
-        styles.backgroundColor = 'var(--green-light)'
+        styles.backgroundColor = buttonBackgroundColor
+        styles.borderColor = buttonBorderColor
       }
 
 
@@ -67,7 +75,8 @@ export default function Button({ type, text, name, state, setState, timeframe, n
       styles.padding = '5px 25px'
 
       if (state == name) {
-        styles.backgroundColor = 'var(--green-light)'
+        styles.backgroundColor = buttonBackgroundColor
+        styles.borderColor = buttonBorderColor
       }
       break;
     case 'periods':
@@ -84,7 +93,8 @@ export default function Button({ type, text, name, state, setState, timeframe, n
 
 
       if (state == name) {
-        styles.backgroundColor = 'var(--green-light)'
+        styles.backgroundColor = buttonBackgroundColor
+        styles.borderColor = buttonBorderColor
       }
       break;
     case 'export':

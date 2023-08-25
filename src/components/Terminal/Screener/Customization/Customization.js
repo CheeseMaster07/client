@@ -8,6 +8,7 @@ import Selected from './Selected'
 
 export default function Customization({ presetList, setPresetList, }) {
   const [category, setCategory] = useState('valuation')
+  const [metric, setMetric] = useState('')
 
   const isDescMenuToggled_obj = {}
   presetList.forEach((metric, index) => {
@@ -43,10 +44,10 @@ export default function Customization({ presetList, setPresetList, }) {
         />
       </div>
       <div style={{ height: '100%', display: 'flex' }}>
-        <Selected presetList={presetList} setPresetList={setPresetList} isDescMenuToggled={isDescMenuToggled} setIsDescMenuToggled={setIsDescMenuToggled} />
+        <Selected presetList={presetList} setPresetList={setPresetList} isDescMenuToggled={isDescMenuToggled} setIsDescMenuToggled={setIsDescMenuToggled} setCategory={setCategory} setMetric={setMetric} />
         <div style={{ height: '100%', width: '72.5%' }}>
-          <Metrics category={category} presetList={presetList} />
-          <Desc />
+          <Metrics category={category} metric={metric} setMetric={setMetric} presetList={presetList} />
+          <Desc category={category} metric={metric} presetList={presetList} setPresetList={setPresetList} />
         </div>
 
       </div>

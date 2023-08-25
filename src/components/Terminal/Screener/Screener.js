@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setSearchedStocks_action } from '../../../actions/stocks'
+import { setSearchedStocks_length_action, setSearchedStocks_action } from '../../../actions/stocks'
 
 import '../../../css/terminal/Screener/screener.css'
 
@@ -20,7 +20,12 @@ export default function Screener() {
   function filterMaxMin(data) {
     const obj = {}
     data.map(item => {
-      if (item.id) {
+      if (item.type == 'text') {
+        obj[item.id] = {
+          arr: [],
+        }
+      }
+      else if (item.id) {
         obj[item.id] = {
           [item.desc]: {
             max: '',
@@ -33,17 +38,6 @@ export default function Screener() {
     return obj
   }
 
-  function filterSort(data) {
-    const obj = {}
-    data.map(item => (
-      obj[item.id] = {
-        [item.desc]: {
-          sort: false
-        }
-
-      }));
-    return obj
-  }
 
   function yearsTransformer(yrs) {
     return `${yrs.split(' ')[0]} Years`
@@ -51,6 +45,7 @@ export default function Screener() {
 
   const stocks = useSelector((state) => state.stocks)
   const searchedStocks = useSelector((state) => state.searchedStocks)
+  const searchQuery = useSelector((state) => state.searchQuery)
 
   const [filteredStocks, setFilteredStocks] = useState(searchedStocks)
   const [helpWithSorting, setHelpWithSorting] = useState()
@@ -70,11 +65,14 @@ export default function Screener() {
   }, [preset])
 
   useEffect(() => {
-    console.log(customize)
+    // setFilteredStocks(filteredStocks
+    //   .filter(stock => stock.general?.Name && stock?.ticker)
+    //   .filter(stock => stock.general.Name.toLowerCase().startsWith(searchQuery.toLowerCase()) || stock.ticker.toLowerCase().startsWith(searchQuery.toLowerCase())))
 
-  }, [customize])
+  }, [searchQuery])
 
   useEffect(() => {
+    console.log(presetList)
     if (JSON.stringify(presetList.filter(metric => metric.label !== 'ticker')) !== JSON.stringify(presets[preset])) {
       setPreset('')
     }
@@ -84,16 +82,13 @@ export default function Screener() {
   }, [presetList])
 
   useEffect(() => {
-
-    //console.log('sd')
+    dispatch(setSearchedStocks_length_action(filteredStocks.length))
   }, [filteredStocks])
 
   useEffect(() => {
-    //console.log(filter)
-    // console.log(presetList)
-    // console.log(filteredStocks)
 
     const resultStocks = []
+
 
     searchedStocks.forEach(stock => {
       let numOfRight = 0
@@ -101,6 +96,11 @@ export default function Screener() {
         if (metric.label === 'ticker') return
         // console.log(filter[metric.id][metric.desc], metric)
         // console.log(filter[metric.id])
+        if (metric.type == 'text') {
+          if (filter[metric.id].arr.includes(stock.screenerData[metric.segment][metric.id][metric.desc]) || filter[metric.id].arr.length == 0) {
+            numOfRight = numOfRight + 1
+          }
+        }
         if (filter[metric.id][metric.desc] == undefined) {
           filter[metric.id][metric.desc] = { max: '', min: '' }
         }
@@ -156,7 +156,7 @@ export default function Screener() {
         resultStocks.push(stock)
 
       }
-      // console.log(resultStocks)
+
     })
     setFilteredStocks(resultStocks)
     setSearchedStocks_action(resultStocks)
@@ -171,7 +171,19 @@ export default function Screener() {
       let resultStocks = [];
       if (sortBy.type) {
         resultStocks = prevFilteredStocks.sort((a, b) => {
+
           if (sortBy.type == 'high') {
+            if (filter[sortBy.id]?.arr) {
+              const lowerA = a.screenerData.general[sortBy.id].Current.toLowerCase();
+              const lowerB = b.screenerData.general[sortBy.id].Current.toLowerCase();
+              if (lowerA < lowerB) {
+                return -1;
+              }
+              if (lowerA > lowerB) {
+                return 1;
+              }
+              return 0
+            }
             switch (sortBy.desc.split(' | ').length) {
               case 1:
                 return (b.screenerData[sortBy.segment][sortBy.id][sortBy.desc.split(' | ')[0]] - a.screenerData[sortBy.segment][sortBy.id][sortBy.desc.split(' | ')[0]])
@@ -186,6 +198,17 @@ export default function Screener() {
                 break;
             }
           } else if (sortBy.type == 'low') {
+            if (filter[sortBy.id]?.arr) {
+              const lowerA = a.screenerData.general[sortBy.id].Current.toLowerCase();
+              const lowerB = b.screenerData.general[sortBy.id].Current.toLowerCase();
+              if (lowerA > lowerB) {
+                return -1;
+              }
+              if (lowerA < lowerB) {
+                return 1;
+              }
+              return 0
+            }
             switch (sortBy.desc.split(' | ').length) {
               case 1:
                 return (a.screenerData[sortBy.segment][sortBy.id][sortBy.desc.split(' | ')[0]] - b.screenerData[sortBy.segment][sortBy.id][sortBy.desc.split(' | ')[0]])
@@ -237,7 +260,7 @@ export default function Screener() {
         />
       </div>
       <Table
-        stocks={filteredStocks}
+        stocks={filteredStocks.slice(0, 100)}
         metrics={presetList}
         filter={filter}
         setFilter={setFilter}

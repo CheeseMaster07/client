@@ -69,16 +69,26 @@ sharePrice_Array1.forEach((desc1) => {
 
 export const categories = {
   general: {
-    sector: {
-      sectors: [],
-      toggled: false,
-      sortBy: false,
-    },
-    industry: {
-      industries: [],
-      toggled: false,
-      sortBy: false,
-    },
+    sector: [
+      {
+        label: 'Sector',
+        desc: 'Current',
+        id: 'sector',
+        segment: 'general',
+        type: 'text',
+        link: 'overview',
+      }
+    ],
+    industry: [
+      {
+        label: 'Industry',
+        desc: 'Current',
+        id: 'industry',
+        segment: 'general',
+        type: 'text',
+        link: 'overview',
+      }
+    ],
   },
   valuation: {
     marketCap:
@@ -95,6 +105,7 @@ export const categories = {
     priceEarnings: multiple_Array.map(desc => {
       return {
         label: 'P/E',
+        label2: 'Price to Earnings Ratio',
         desc: desc,
         id: 'priceEarnings',
         segment: 'valuation',
@@ -105,6 +116,7 @@ export const categories = {
     enterpriceValueEBIT: multiple_Array.filter(desc => desc != 'Forward').map(desc => {
       return {
         label: 'EV/EBIT',
+        label2: 'Enterprice Value to EBIT Ratio',
         desc: desc,
         id: 'enterpriceValueEBIT',
         segment: 'valuation',
@@ -115,6 +127,7 @@ export const categories = {
     priceBook: multiple_Array.filter(desc => desc != 'Forward').map(desc => {
       return {
         label: 'P/B',
+        label2: 'Price to Book Ratio',
         desc: desc,
         id: 'priceBook',
         segment: 'valuation',
@@ -125,6 +138,7 @@ export const categories = {
     priceSales: multiple_Array.map(desc => {
       return {
         label: 'P/S',
+        label2: 'Price to Sales Ratio',
         desc: desc,
         id: 'priceSales',
         segment: 'valuation',
@@ -134,7 +148,8 @@ export const categories = {
     }),
     priceFreeCashflow: multiple_Array.filter(desc => desc != 'Forward').map(desc => {
       return {
-        label: 'P/B',
+        label: 'P/FCF',
+        label2: 'Price to Free Cashflow Ratio',
         desc: desc,
         id: 'priceFreeCashflow',
         segment: 'valuation',
@@ -147,6 +162,7 @@ export const categories = {
     revenueGrowth: growth_Array_Full.map(desc => {
       return {
         label: 'Revenue',
+        label2: 'Revenue Growth',
         desc: desc,
         id: 'revenueGrowth',
         segment: 'growth',
@@ -157,6 +173,7 @@ export const categories = {
     operatingIncomeGrowth: growth_Array_Full.filter(desc => desc != 'Forward').map(desc => {
       return {
         label: 'Operating Income',
+        label2: 'Operating Income Growth',
         desc: desc,
         id: 'operatingIncomeGrowth',
         segment: 'growth',
@@ -167,6 +184,7 @@ export const categories = {
     netIncomeGrowth: growth_Array_Full.filter(desc => desc != 'Forward').map(desc => {
       return {
         label: 'Net Income',
+        label2: 'Net Income Growth',
         desc: desc,
         id: 'netIncomeGrowth',
         segment: 'growth',
@@ -177,6 +195,7 @@ export const categories = {
     EPSGrowth: growth_Array_Full.filter(desc => desc != 'Forward').map(desc => {
       return {
         label: 'EPS',
+        label2: 'Earnings Per Share Growth',
         desc: desc,
         id: 'EPSGrowth',
         segment: 'growth',

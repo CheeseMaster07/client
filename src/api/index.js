@@ -16,6 +16,8 @@ export const fetchStocks = () => API.get('/stocks')
 
 export const fetchOneStock = (ticker) => API.get(`/stocks/${ticker}`)
 
+export const fetchSectorsandIndustries = () => API.get('/stocks/sectors-industries')
+
 export const fetchRecentUser = (user) => API.get(`/auth/${user._id}`)
 export const login = (formData) => API.post('/auth/login', formData)
 export const register = (formData) => API.post('/auth/register', formData)

@@ -5,6 +5,7 @@ import { categories } from './Categories'
 function chooseMetric(segment, id, desc1, desc2) {
   if (!desc2) {
     const result = categories[segment][id].filter(metric => metric.desc === desc1)[0]
+
     return result;
   } else {
     return categories[segment][id].filter(metric => metric.desc === `${desc1} | ${desc2}`)[0];
@@ -20,6 +21,8 @@ export const presets = {
     chooseMetric('valuation', 'priceEarnings', 'Trailing'),
     chooseMetric('valuation', 'priceEarnings', 'Forward'),
     chooseMetric('valuation', 'priceBook', 'Trailing'),
+    chooseMetric('general', 'sector', 'Current'),
+    //chooseMetric('general', 'industry', 'Current'),
 
 
   ],

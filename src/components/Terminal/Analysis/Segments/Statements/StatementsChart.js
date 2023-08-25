@@ -137,6 +137,12 @@ export default function StatementsChart({ data, state, metrics }) {
 
   fiscalPeriods.reverse()
   fiscalReports.reverse()
+  console.log(fiscalPeriods)
+  if (fiscalPeriods[fiscalPeriods.length - 1].includes('TTM') || fiscalPeriods[fiscalPeriods.length - 1].includes('Current')) {
+    fiscalPeriods.pop()
+    fiscalReports.pop()
+  }
+
 
 
   const [chartData, setChartData] = useState({

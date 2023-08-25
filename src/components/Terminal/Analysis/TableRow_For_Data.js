@@ -1,7 +1,8 @@
 import React from 'react'
 
 export default function TableRow_For_Data({ period, height, fontSize, metrics, weight, align }) {
-  const isMainStock = window.location.pathname.includes(period.ticker)
+  const isMainStock = window.location.pathname.split('/')[3] == period.ticker
+
   const style = {
     padding: `${height}px 0`,
     fontSize: `${fontSize}px`,

@@ -118,7 +118,10 @@ export default function Table({ data, metrics, timeframe, IS }) {
 
   fiscalPeriods.reverse()
   fiscalReports.reverse()
-  console.log(fiscalReports)
+  // fiscalReports.shift()
+  // fiscalPeriods.shift()
+
+  // console.log(fiscalReports)
 
 
   return (

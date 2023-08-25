@@ -9,6 +9,9 @@ export function TransformMetric(stock, metric) {
         return '---'
       }
       switch (metric.type) {
+        case 'text':
+          return num
+          break
         case 'largeNum':
           if (Math.abs(num) >= 1000000000000) {
             return (num / 1000000000000).toFixed(1) + 'T'

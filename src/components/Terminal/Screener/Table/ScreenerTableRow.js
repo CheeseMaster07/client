@@ -9,10 +9,15 @@ export default function ScreenerTableRow({ metrics, stock, index }) {
     return number % 2 !== 0;
   }
 
+
+
   return (
     <tr>
       {metrics.map((metric, xIndex) => {
         let width = '150px'
+        if (metric.type === 'text') {
+          width = '190px'
+        }
         let color = ''
         if (metric.type == 'precentage-gain') {
           if (Number(TransformMetric(stock, metric).split('%')[0]) > 0) {
@@ -27,8 +32,20 @@ export default function ScreenerTableRow({ metrics, stock, index }) {
         if (xIndex == 0) {
           width = '213px'
         }
-
-        return <td onClick={() => navigate(`/terminal/analysis/${stock.ticker}/${metric.link}`)} className='stockBar' style={isOdd(index) ? { backgroundColor: 'var(--green-dark)', width: width, color: color } : { backgroundColor: 'var(--green-middark)', width: width, color: color }}>
+        const styles = {
+          width: width,
+          color: color,
+        }
+        return <td onClick={() => navigate(`/terminal/analysis/${stock.ticker}/${metric.link}`)} className='stockBar' style={{
+          ...styles,
+          ...(isOdd(index)
+            ? {
+              backgroundColor: 'var(--green-dark)',
+            }
+            : {
+              backgroundColor: 'var(--green-middark)',
+            })
+        }}>
           {metric.label == 'ticker' ? stock.ticker : TransformMetric(stock, metric)}
         </td>
       })}

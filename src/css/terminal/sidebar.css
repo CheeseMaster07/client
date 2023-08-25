@@ -25,7 +25,6 @@
 
 .sidebar-middle {
   background-color: var(--green-dark);
-  border-top: solid 2px var(--green-middle);
   max-height: calc(100vh - 250px);
   width: 100%;
   box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.25);
@@ -143,9 +142,11 @@
   height: 16px;
   margin-top: 4px;
   background-color: #22302a;
+  
 }
 
 .arrow {
   width: 13px;
   margin-bottom: 1px;
+
 }

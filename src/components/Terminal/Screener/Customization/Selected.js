@@ -4,7 +4,7 @@ import dots_png from '../../../../logos/dots.png'
 import delete_png from '../../../../logos/delete.png'
 import Metrics from './Metrics'
 
-export default function Selected({ presetList, setPresetList, isDescMenuToggled, setIsDescMenuToggled }) {
+export default function Selected({ presetList, setPresetList, isDescMenuToggled, setIsDescMenuToggled, setCategory, setMetric }) {
 
   const alignCenterStyle = { display: 'flex', alignItems: 'center' }
 
@@ -19,7 +19,7 @@ export default function Selected({ presetList, setPresetList, isDescMenuToggled,
             <div style={{ display: 'flex', gap: '12px' }}>
               <div style={alignCenterStyle}>
                 <div className='deleteButton' style={alignCenterStyle} onClick={() => {
-                  setPresetList(presetList.filter(listMetric => listMetric != metric))
+                  setPresetList(presetList.filter((_, i) => i !== index));
                 }}>
                   <img src={delete_png} style={{ height: '18px', userSelect: 'none' }} />
 
@@ -35,19 +35,23 @@ export default function Selected({ presetList, setPresetList, isDescMenuToggled,
             <div style={alignCenterStyle}>
 
               <img onClick={() => {
-                setIsDescMenuToggled(() => {
-                  const updatedState = { ...isDescMenuToggled };
+                // setIsDescMenuToggled(() => {
+                //   const updatedState = { ...isDescMenuToggled };
 
-                  // Set all metrics to false
-                  Object.keys(updatedState).forEach(key => {
-                    updatedState[key] = false;
-                  });
+                //   // Set all metrics to false
+                //   Object.keys(updatedState).forEach(key => {
+                //     updatedState[key] = false;
+                //   });
 
-                  // Set the specified metric to true
-                  updatedState[metric.id] = !isDescMenuToggled[metric.id];
+                //   // Set the specified metric to true
+                //   updatedState[metric.id] = !isDescMenuToggled[metric.id];
 
-                  return updatedState;
-                });
+                //   return updatedState;
+                // });
+                setCategory(metric.segment);
+                setMetric(metric.id);
+
+
               }} src={dots_png} style={{ height: '21px', userSelect: 'none', cursor: 'pointer', zIndex: '2' }} />
             </div>
           </div>
