@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { getOneStock } from '../../../actions/stocks';
 
-import Overview from './Segments/Overview'
+import Overview from './Segments/Overview/Overview'
 import Statements from './Segments/Statements/Statements'
 import Buybacks from './Segments/Buybacks/Buybacks'
 import Competition from './Segments/Competition/Competition'

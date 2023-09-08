@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import Header from './Header'
 import Table_For_Chart from '../../Table_For_Chart'
@@ -33,7 +33,18 @@ export default function Buybacks({ stock }) {
 
   }
 
-  console.log(reports)
+  useEffect(() => {
+    const numOfReports = Object.keys(allReports).length
+    if (numOfReports + 3 >= 15) {
+      setperiods('15')
+    } else if (numOfReports + 3 >= 10) {
+      setperiods('10')
+
+    } else {
+      setperiods('5')
+
+    }
+  }, [allReports])
 
   return (
     <>

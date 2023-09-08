@@ -36,7 +36,23 @@ export default function Dividends({ stock }) {
 
   let keys
   let lastFiveKeys
-  console.log(stock.dividendsData?.everyOne)
+
+  useEffect(() => {
+    if (allReports) {
+      const numOfReports = Object.keys(allReports).length
+      if (numOfReports + 3 >= 15) {
+        setperiods('15')
+      } else if (numOfReports + 3 >= 10) {
+        setperiods('10')
+
+      } else {
+        setperiods('5')
+
+      }
+    }
+
+  }, [allReports])
+
   if (!stock.dividendsData?.everyOne) {
     return (
       <>
@@ -83,6 +99,8 @@ export default function Dividends({ stock }) {
 
     }
   }
+
+
 
   return (
     <>

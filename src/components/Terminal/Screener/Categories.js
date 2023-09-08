@@ -263,7 +263,7 @@ export const categories = {
         id: 'totalDebt',
         segment: 'stability',
         type: 'largeNum',
-
+        link: 'statements',
       }
     }),
     cash: dividends_Array_Gain_Full.map(desc => {
@@ -273,6 +273,7 @@ export const categories = {
         id: 'cash',
         segment: 'stability',
         type: 'largeNum',
+        link: 'statements',
 
       }
     }),
@@ -283,6 +284,7 @@ export const categories = {
         id: 'netDebt',
         segment: 'stability',
         type: 'largeNum',
+        link: 'statements',
 
       }
     }),
@@ -293,6 +295,7 @@ export const categories = {
         id: 'currentRatio',
         segment: 'stability',
         type: 'smallNum',
+        link: 'statements',
 
       }
     }),
@@ -305,6 +308,7 @@ export const categories = {
         id: 'returnOnAssets',
         segment: 'profitability',
         type: 'precentage',
+        link: 'statements',
 
       }
     }),
@@ -315,6 +319,7 @@ export const categories = {
         id: 'returnOnEquity',
         segment: 'profitability',
         type: 'precentage',
+        link: 'statements',
 
       }
     }),
@@ -325,6 +330,7 @@ export const categories = {
         id: 'grossMargin',
         segment: 'profitability',
         type: 'precentage',
+        link: 'statements',
 
       }
     }),
@@ -335,6 +341,7 @@ export const categories = {
         id: 'operatingMargin',
         segment: 'profitability',
         type: 'precentage',
+        link: 'statements',
 
       }
     }),
@@ -345,6 +352,7 @@ export const categories = {
         id: 'profitMargin',
         segment: 'profitability',
         type: 'precentage',
+        link: 'statements',
 
       }
     }),

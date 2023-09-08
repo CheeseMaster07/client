@@ -13,6 +13,9 @@ export default function Statements({ stock }) {
   const [periods, setperiods] = useState('10')
   const [metrics, setMetrics] = useState([])
 
+
+
+
   useEffect(() => {
     let metricsData = [];
 
@@ -77,13 +80,13 @@ export default function Statements({ stock }) {
       case 'statistics':
         metricsData = [
           { id: 'sharesOutstanding', label: 'Shares Outstanding', type: 'main', collapsible: false, color: 'rgb(68, 138, 255)' },
-          { id: 'grossMargin', label: 'Gross Margin', type: 'main', collapsible: false, color: 'rgb(68, 138, 255)', extraInfo: 'precentage' },
-          { id: 'operatingMargin', label: 'Operating Margin', type: 'main', collapsible: false, color: 'rgb(68, 138, 255)', extraInfo: 'precentage' },
-          { id: 'netMargin', label: 'Net Margin', type: 'main', collapsible: false, color: 'rgb(68, 138, 255)', extraInfo: 'precentage' },
-          { id: 'returnOnAssets', label: 'Return on Assets', type: 'main', collapsible: false, color: 'rgb(68, 138, 255)', extraInfo: 'precentage' },
-          { id: 'returnOnEquity', label: 'Return on Equity', type: 'main', collapsible: false, color: 'rgb(68, 138, 255)', extraInfo: 'precentage' },
-          { id: 'currentRatio', label: 'Current Ratio', type: 'main', collapsible: false, color: 'rgb(68, 138, 255)', extraInfo: 'whole' },
-          { id: 'quickRatio', label: 'Quick Ratio', type: 'main', collapsible: false, color: 'rgb(68, 138, 255)', extraInfo: 'whole' },
+          { id: 'grossMargin', label: 'Gross Margin', type: 'main', collapsible: false, color: 'rgb(77, 208, 225)', extraInfo: 'precentage' },
+          { id: 'operatingMargin', label: 'Operating Margin', type: 'main', collapsible: false, color: 'rgb(179, 136, 255)', extraInfo: 'precentage' },
+          { id: 'netMargin', label: 'Net Margin', type: 'main', collapsible: false, color: 'rgb(251, 192, 45)', extraInfo: 'precentage' },
+          { id: 'returnOnAssets', label: 'Return on Assets', type: 'main', collapsible: false, color: 'rgb(255, 128, 133)', extraInfo: 'precentage' },
+          { id: 'returnOnEquity', label: 'Return on Equity', type: 'main', collapsible: false, color: 'rgb(231, 82, 25)', extraInfo: 'precentage' },
+          { id: 'currentRatio', label: 'Current Ratio', type: 'main', collapsible: false, color: 'rgb(141, 137, 252)', extraInfo: 'whole' },
+          { id: 'quickRatio', label: 'Quick Ratio', type: 'main', collapsible: false, color: 'rgb(210, 131, 189)', extraInfo: 'whole' },
         ];
         break;
 
@@ -164,6 +167,20 @@ export default function Statements({ stock }) {
     default:
       break;
   }
+
+  useEffect(() => {
+    const numOfReports = Object.keys(allReports).length
+    if (numOfReports + 3 >= 15) {
+      setperiods('15')
+    } else if (numOfReports + 3 >= 10) {
+      setperiods('10')
+
+    } else {
+      setperiods('5')
+
+    }
+  }, [allReports])
+
 
   return (
     <>

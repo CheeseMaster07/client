@@ -73,7 +73,7 @@ export default function TableRow({
   }
 
 
-  function renderChangeColumns(fiscalReports, timeframe, metric) {
+  function renderChangeColumns(fiscalReports, timeframe, metric, type) {
 
     const allReports = [...lastReports, ...fiscalReports]
 
@@ -86,6 +86,9 @@ export default function TableRow({
 
       if (timeframe == 'yearly') {
         if (index == 0) return
+        previousReport = allReports[index - 1]
+      } else if (type) {
+        if ([0, 1, 2, 3].includes(index)) return
         previousReport = allReports[index - 1]
       } else {
         if ([0, 1, 2, 3].includes(index)) return
@@ -161,7 +164,7 @@ export default function TableRow({
 
           </div>
           {isExtrasMenuToggled[metric.id] ?
-            <ExtrasMenu metric={metric} extras={extras} setExtras={setExtras} />
+            <ExtrasMenu metric={metric} extras={extras} setExtras={setExtras} timeframe={timeframe} />
             :
             ''}
 
@@ -188,37 +191,50 @@ export default function TableRow({
           {renderChangeColumns(fiscalReports, timeframe, metric)}
         </tr >
         :
-        typeOfRow == 'margin' ?
+        typeOfRow == 'QoQ' ?
           < tr style={{ fontWeight: '400' }} >
             <th className="statements-table-first-column" style={{ fontStyle: 'italic', fontWeight: '400', color: '#969696', fontSize: `${window.innerHeight < 2000 ? '14px' : '15px'}` }}>
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <div style={{ display: 'flex', marginLeft: '50px' }}>
-                  % of Revenue
+                  % Quarter over Quarter
                 </div>
               </div>
             </th>
-            {
-              fiscalReports.map((report, index) => {
-                const revenue = IS[report.date]?.totalRevenue;
-                const EBIT = report.operatingIncome;
-
-                if (metric.id != 'incomeTaxExpense') {
-                  let margin = report[metric.id] / revenue
-                  return (
-                    <td style={{ fontStyle: 'italic', fontWeight: '400', color: 'yellow', fontSize: `${window.innerHeight < 2000 ? '14px' : '15px'}` }}>{formatNumber(margin, 'change')}</td>
-                  )
-                } else {
-                  let margin = report[metric.id] / EBIT
-                  return (
-                    <td style={{ fontStyle: 'italic', fontWeight: '400', color: 'yellow', fontSize: `${window.innerHeight < 2000 ? '14px' : '15px'}` }}>{formatNumber(margin, 'change')}</td>
-                  )
-                }
-
-              })
-            }
+            {/* {allReports = [lastReport, ...fiscalReports]} */}
+            {renderChangeColumns(fiscalReports, timeframe, metric, 'QoQ')}
           </tr >
           :
-          ''
+          typeOfRow == 'margin' ?
+            < tr style={{ fontWeight: '400' }} >
+              <th className="statements-table-first-column" style={{ fontStyle: 'italic', fontWeight: '400', color: '#969696', fontSize: `${window.innerHeight < 2000 ? '14px' : '15px'}` }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <div style={{ display: 'flex', marginLeft: '50px' }}>
+                    % of Revenue
+                  </div>
+                </div>
+              </th>
+              {
+                fiscalReports.map((report, index) => {
+                  const revenue = IS[report.date]?.totalRevenue;
+                  const EBIT = report.operatingIncome;
+
+                  if (metric.id != 'incomeTaxExpense') {
+                    let margin = report[metric.id] / revenue
+                    return (
+                      <td style={{ fontStyle: 'italic', fontWeight: '400', color: 'yellow', fontSize: `${window.innerHeight < 2000 ? '14px' : '15px'}` }}>{formatNumber(margin, 'change')}</td>
+                    )
+                  } else {
+                    let margin = report[metric.id] / EBIT
+                    return (
+                      <td style={{ fontStyle: 'italic', fontWeight: '400', color: 'yellow', fontSize: `${window.innerHeight < 2000 ? '14px' : '15px'}` }}>{formatNumber(margin, 'change')}</td>
+                    )
+                  }
+
+                })
+              }
+            </tr >
+            :
+            ''
 
   )
 }

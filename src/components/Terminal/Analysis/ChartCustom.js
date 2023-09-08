@@ -160,6 +160,7 @@ export default function ChartCustom({
 
             barPercentage: .85,
             borderRadius: 50 / Number(fiscalPeriods.length) + 3,
+            order: metric.extraInfo == 'precentage' ? 1 : 2,
           }
 
         } else {

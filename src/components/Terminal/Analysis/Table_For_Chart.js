@@ -53,12 +53,12 @@ export default function Table({ data, metrics, timeframe, IS }) {
 
   metrics.forEach(metric => {
     if (metric.id == 'totalRevenue' || metric.id == 'dividendsPerShare') {
-      extras_obj[metric.id] = { YoY: true, margin: false }
+      extras_obj[metric.id] = { YoY: true, QoQ: false, margin: false }
     } else if (metric.id == 'grossProfit') {
-      extras_obj[metric.id] = { YoY: false, margin: true }
+      extras_obj[metric.id] = { YoY: false, QoQ: false, margin: true }
 
     } else {
-      extras_obj[metric.id] = { YoY: false, margin: false }
+      extras_obj[metric.id] = { YoY: false, QoQ: false, margin: false }
 
     }
   })
@@ -105,8 +105,12 @@ export default function Table({ data, metrics, timeframe, IS }) {
       } else {
         quarter = 'Q4';
       }
-
-      const formattedPeriod = `${quarter} ${year}`;
+      let formattedPeriod
+      if (year == 'TTM' || year == 'Current') {
+        formattedPeriod = year;
+      } else {
+        formattedPeriod = `${quarter} ${year}`;
+      }
       fiscalPeriods.push(formattedPeriod)
     }
     fiscalReports.push(data[`${period}`])
@@ -174,12 +178,36 @@ export default function Table({ data, metrics, timeframe, IS }) {
                   setExtras={setExtras}
                   fiscalReports={fiscalReports}
                   IS={IS}
+                  timeframe={timeframe}
 
                 />
                 {extras[metric.id]?.YoY ?
 
                   < TableRow
                     typeOfRow={'YoY'}
+                    metric={metric}
+                    isToggledMetrics={isToggledMetrics}
+                    setIsToggledMetrics={setIsToggledMetrics}
+                    isCollapsedMetrics={isCollapsedMetrics}
+                    setIsCollapsedMetrics={setIsCollapsedMetrics}
+                    isExtrasMenuToggled={isExtrasMenuToggled}
+                    setIsExtrasMenuToggled={setIsExtrasMenuToggled}
+                    extras={extras}
+                    setExtras={setExtras}
+                    lastReports={lastReports}
+                    fiscalReports={fiscalReports}
+                    IS={IS}
+                    timeframe={timeframe}
+
+                  />
+
+                  :
+                  ''
+                }
+                {extras[metric.id]?.QoQ && timeframe ?
+
+                  < TableRow
+                    typeOfRow={'QoQ'}
                     metric={metric}
                     isToggledMetrics={isToggledMetrics}
                     setIsToggledMetrics={setIsToggledMetrics}

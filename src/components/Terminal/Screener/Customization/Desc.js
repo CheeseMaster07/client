@@ -11,6 +11,7 @@ export default function Desc({ category, metric, presetList, setPresetList }) {
   const [isDescSelected_2, setIsDescSelected_2] = useState({})
   const [desc_1, setDesc_1] = useState()
   const [desc_2, setDesc_2] = useState()
+  const [alreadyExists, setAlreadyExists] = useState()
   const [numOfDifferentDesc, setNumOfDifferentDesc] = useState()
 
   function removeDuplicates(inputArray) {
@@ -29,7 +30,7 @@ export default function Desc({ category, metric, presetList, setPresetList }) {
     }
   }
 
-  function addToScreener(descObj_1, descObj_2) {
+  function addToScreener() {
 
     if (desc_2) {
       setPresetList([...presetList, chooseMetric(category, metric, desc_1, desc_2)])
@@ -38,6 +39,15 @@ export default function Desc({ category, metric, presetList, setPresetList }) {
       setPresetList([...presetList, chooseMetric(category, metric, desc_1)])
 
     }
+  }
+
+  function deleteFromScreener() {
+    console.log(presetList)
+    let formattedDesc = `${desc_1} | ${desc_2}`
+    if (!desc_2) {
+      formattedDesc = desc_1
+    }
+    setPresetList(presetList.filter(preset => preset.id != metric || preset.desc != formattedDesc))
   }
 
   useEffect(() => {
@@ -100,6 +110,10 @@ export default function Desc({ category, metric, presetList, setPresetList }) {
     setDesc_2(desc_2)
   }, [isDescSelected_1, isDescSelected_2])
 
+  useEffect(() => {
+    setAlreadyExists(presetList.some(item => item.desc === `${desc_1} | ${desc_2}` && item.id === metricArray[0].id || item.desc === `${desc_1}` && item.id === metricArray[0].id))
+  }, [desc_1, desc_2, presetList])
+
   const checkBoxStyle = { height: '22px', width: '22px', borderRadius: '5px' }
 
 
@@ -159,20 +173,43 @@ export default function Desc({ category, metric, presetList, setPresetList }) {
 
       </div>
       <div style={{ textAlign: 'center' }}>
-        <button onClick={() => addToScreener(isDescSelected_1, isDescSelected_2)} style={
+        <button onClick={() => {
+          let canClick = false
+          if (descArray_2.length) {
+            if (Object.values(isDescSelected_1).includes(true) && Object.values(isDescSelected_2).includes(true)) {
+              canClick = true
+            }
+
+          } else {
+            if (Object.values(isDescSelected_1).includes(true)) {
+              canClick = true
+            }
+
+          }
+
+          if (canClick) {
+            if (!alreadyExists) {
+              addToScreener(isDescSelected_1, isDescSelected_2)
+
+            } else {
+              deleteFromScreener(isDescSelected_1, isDescSelected_2)
+            }
+          }
+
+        }} style={
           descArray_2.length ?
-            { backgroundColor: Object.values(isDescSelected_1).includes(true) && Object.values(isDescSelected_2).includes(true) ? '' : 'var(--green-middark)' }
+            { backgroundColor: Object.values(isDescSelected_1).includes(true) && Object.values(isDescSelected_2).includes(true) ? (alreadyExists ? 'rgb(222, 38, 38)' : 'var(--green-light)') : 'var(--green-middark)' }
             :
-            { backgroundColor: Object.values(isDescSelected_1).includes(true) ? '' : 'var(--green-middark)' }
+            { backgroundColor: Object.values(isDescSelected_1).includes(true) ? (alreadyExists ? 'rgb(222, 38, 38)' : 'var(--green-light)') : 'var(--green-middark)' }
         }>
-          {presetList.some(item => item.desc === `${desc_1} | ${desc_2}` && item.id === metricArray[0].id || item.desc === `${desc_1}` && item.id === metricArray[0].id) ?
-            'Chance'
+          {alreadyExists ?
+            'Delete'
             :
             'Add'
           }
         </button>
 
       </div>
-    </div>
+    </div >
   )
 }

@@ -59,6 +59,28 @@ export default function Valuation({ stock }) {
       break;
   }
 
+  useEffect(() => {
+    const numOfReports = Object.keys(allReports).length
+    console.log(mode)
+    if (mode == 'multiples') {
+      if (numOfReports - 1 >= 10) {
+        setperiods('10')
+      } else if (numOfReports - 1 >= 5) {
+        setperiods('5')
+
+      } else if (numOfReports - 1 >= 3) {
+        setperiods('3')
+
+      } else {
+        setperiods('1')
+      }
+    } else {
+      console.log('sd')
+      setperiods('10')
+    }
+
+
+  }, [allReports, mode])
 
   return (
     <>

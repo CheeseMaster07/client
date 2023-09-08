@@ -137,7 +137,6 @@ export default function StatementsChart({ data, state, metrics }) {
 
   fiscalPeriods.reverse()
   fiscalReports.reverse()
-  console.log(fiscalPeriods)
   if (fiscalPeriods[fiscalPeriods.length - 1].includes('TTM') || fiscalPeriods[fiscalPeriods.length - 1].includes('Current')) {
     fiscalPeriods.pop()
     fiscalReports.pop()
@@ -158,7 +157,9 @@ export default function StatementsChart({ data, state, metrics }) {
           yAxisID: metric.extraInfo == 'precentage' ? 'y2' : metric.extraInfo == 'whole' ? 'y3' : 'y1',
 
           barPercentage: .85,
-          borderRadius: 4,
+          borderRadius: 50 / Number(fiscalPeriods.length) + 3,
+          order: metric.extraInfo == 'precentage' ? 1 : 2,
+
         }
       } else {
         return null
