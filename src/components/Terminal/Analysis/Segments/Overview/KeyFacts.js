@@ -1,6 +1,8 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 
 export default function KeyFacts({ stock }) {
+  const navigate = useNavigate()
   function formatLargeNum(num, decimals) {
     if (Math.abs(num) >= 1000000000000) {
       return (num / 1000000000000).toFixed(decimals) + 'T'
@@ -18,7 +20,6 @@ export default function KeyFacts({ stock }) {
       }
     }
   }
-
 
   const keyFacts = [
     {
@@ -57,19 +58,45 @@ export default function KeyFacts({ stock }) {
       data2: formatLargeNum(stock.general.FullTimeEmployees, 0),
     },
   ]
+
+  let sizes
+  if (window.innerWidth < 2000) {
+    sizes = {
+      titleSize: '30px',
+      titleMargin: '12px',
+      textSize: '20px',
+      textMarginTop: '17px',
+      width: '450px',
+      height: '420px',
+      gap: '5px',
+      textBoxWidth: '160px',
+    }
+  } else {
+    sizes = {
+      titleSize: '34px',
+      titleMargin: '16px',
+      textSize: '22px',
+      textMarginTop: '25px',
+      width: '520px',
+      height: '500px',
+      gap: '40px',
+      textBoxWidth: '180px',
+
+    }
+  }
   return (
-    <div style={{ width: '520px', height: '500px', textAlign: 'center' }}>
-      <h3 style={{ textAlign: 'center', fontSize: '34px', margin: '0', marginBottom: '16px' }}>Key Facts</h3>
+    <div style={{ width: sizes.width, height: sizes.height, textAlign: 'center' }}>
+      <h3 style={{ textAlign: 'center', fontSize: sizes.titleSize, margin: '0', marginBottom: sizes.titleMargin }}>Key Facts</h3>
       <div style={{ backgroundColor: 'var(--green-middark)', width: '82%', height: '88%', display: 'inline-block', borderRadius: '10px' }}>
         {keyFacts.map(row => {
-          return <div style={{ display: 'flex', justifyContent: 'center', gap: '40px', marginTop: '25px' }}>
-            <div style={{ width: '180px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-              <p style={{ fontSize: '22px', fontWeight: 'bold', margin: '0' }}>{row.label}</p>
-              <p style={{ fontSize: '22px', fontWeight: 'bold', margin: '0', marginTop: '5px', color: '#EEFF84' }}>{row.data}</p>
+          return <div style={{ display: 'flex', justifyContent: 'center', gap: sizes.gap, marginTop: sizes.textMarginTop }}>
+            <div style={{ width: sizes.textBoxWidth, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+              <p style={{ fontSize: sizes.textSize, fontWeight: 'bold', margin: '0' }}>{row.label}</p>
+              <p style={{ fontSize: sizes.textSize, fontWeight: 'bold', margin: '0', marginTop: '5px', color: '#EEFF84' }}>{row.data}</p>
             </div>
-            <div style={{ width: '180px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-              <p style={{ fontSize: '22px', fontWeight: 'bold', margin: '0' }}>{row.label2}</p>
-              <p style={{ fontSize: '22px', fontWeight: 'bold', margin: '0', marginTop: '5px', color: '#EEFF84' }}>{row.data2}</p>
+            <div style={{ width: sizes.textBoxWidth, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+              <p style={{ fontSize: sizes.textSize, fontWeight: 'bold', margin: '0' }}>{row.label2}</p>
+              <p style={{ fontSize: sizes.textSize, fontWeight: 'bold', margin: '0', marginTop: '5px', color: '#EEFF84' }}>{row.data2}</p>
             </div>
           </div>
         })}
