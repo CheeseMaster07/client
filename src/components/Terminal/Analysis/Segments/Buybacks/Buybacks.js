@@ -61,8 +61,12 @@ export default function Buybacks({ stock }) {
         />
       </div>
 
-      <Table_For_Chart data={reports} metrics={metrics} timeframe={timeframe} IS={stock.fundamentals.financialStatements.Income_Statement[timeframe]} />
-      <Chart metrics={metrics} reports={reports} timeframe={timeframe} />
+      <div className='table-chart-container'>
+        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '84vh' }}>
+          <Table_For_Chart data={reports} metrics={metrics} timeframe={timeframe} IS={stock.fundamentals.financialStatements.Income_Statement[`${timeframe}`]} />
+          <Chart metrics={metrics} reports={reports} timeframe={timeframe} />
+        </div>
+      </div>
 
     </>
   )

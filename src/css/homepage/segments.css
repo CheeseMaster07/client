@@ -98,7 +98,7 @@
 .pricing-container {
   color: var(--white);
   margin-top: 600px;
-  width: 57%;
+  width: 18%;
   text-align: center;
   padding-bottom: 300px;
 }
@@ -119,6 +119,7 @@
   border-radius: 35px;
   flex: 1;
   border: solid 3px var(--white);
+  background-color: var(--green-dark)
 }
 
 .pricing-option h3 {

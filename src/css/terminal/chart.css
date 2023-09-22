@@ -5,10 +5,11 @@
   align-items: center;
   display: flex;
   flex-direction: column;
+
 }
 
 .chart-legend {
-  margin-top: 20px;
+  margin-top: 15px;
   width: 97%;
   margin-right: 20px;
   display: flex;
@@ -42,4 +43,25 @@
   align-items: center;
   display: flex;
   margin-right: 20px;
+}
+
+.table-chart-container {
+  overflow-y: auto;
+  max-height: 100%;
+}
+
+.table-chart-container::-webkit-scrollbar {
+  width: 8px;
+
+}
+
+.table-chart-container::-webkit-scrollbar-track {
+  background-color: transparent;
+  display: hidden;
+}
+
+/* Styles for the scrollbar thumb (the draggable part of the scrollbar) */
+.table-chart-container::-webkit-scrollbar-thumb {
+  background-color: var(--green-light);
+  border-radius: 4px;
 }

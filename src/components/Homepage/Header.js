@@ -5,6 +5,9 @@ import '../../css/homepage/header.css'
 import '../../css/colors.css'
 import { createOrGetUser } from '../../api'
 
+import premiumBackground from '../../logos/premium.jpg'
+
+
 
 export default function Header() {
   const navigate = useNavigate()
@@ -50,15 +53,28 @@ export default function Header() {
           {user ?
             <div style={{ textAlign: 'center' }}>
               <h2 style={{ marginBottom: '3px', fontSize: '25px' }}>{user.result?.name}</h2>
-              <h2 style={{
-                fontSize: '20px',
-                marginTop: '2px',
-                color: `black`,
-                backgroundColor: `var(--tier-${user.result?.tier.split(' ')[0].toLowerCase()})`,
-                display: 'inline-block',
-                padding: '1px 15px',
-                borderRadius: '5px'
-              }}>{user.result?.tier.split(' ')[0]}</h2>
+              {user.result?.tier == 'Premium Plan' ?
+                <h2 style={{
+                  fontSize: '20px',
+                  marginTop: '2px',
+                  color: `black`,
+                  backgroundImage: `url(${premiumBackground})`,
+                  backgroundSize: 'cover', // Make the image fit within the div
+                  backgroundRepeat: 'no-repeat', // Prevent image repetition
+                  display: 'inline-block',
+                  padding: '1px 15px',
+                  borderRadius: '5px'
+                }}>{user.result?.tier.split(' ')[0]}</h2>
+                : <h2 style={{
+                  fontSize: '20px',
+                  marginTop: '2px',
+                  color: `black`,
+                  backgroundColor: `var(--tier-${user.result?.tier.split(' ')[0].toLowerCase()})`,
+                  display: 'inline-block',
+                  padding: '1px 15px',
+                  borderRadius: '5px'
+                }}>{user.result?.tier.split(' ')[0]}</h2>
+              }
             </div>
 
             :

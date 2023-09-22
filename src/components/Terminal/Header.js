@@ -4,7 +4,7 @@ import { Outlet, Link, useLocation, useNavigate, useParams } from 'react-router-
 import '../../css/terminal/header.css'
 import '../../css/colors.css'
 
-
+import premiumBackground from '../../logos/premium.jpg'
 import overview_png from '../../logos/overview.png'
 import statements_png from '../../logos/statements.png'
 import valuation_png from '../../logos/valuation.png'
@@ -129,15 +129,30 @@ export default function Header({ mode }) {
           </div>
           <div className='user-part' style={{ textAlign: 'center', marginRight: '30px' }}>
             <h2 style={{ marginBottom: '2px', marginTop: '8px', fontSize: '18px' }}>{user.result.name}</h2>
-            <h2 style={{
-              marginTop: '0',
-              fontSize: '14px',
-              display: 'inline-block',
-              padding: '1px 10px',
-              borderRadius: '3px',
-              color: 'black',
-              backgroundColor: `var(--tier-${user.result.tier.split(' ')[0].toLowerCase()})`
-            }}>{user.result.tier.split(' ')[0]}</h2>
+            {user.result?.tier == 'Premium Plan' ?
+              <h2 style={{
+                marginTop: '0',
+                fontSize: '14px',
+                display: 'inline-block',
+                padding: '1px 10px',
+                borderRadius: '3px',
+                color: 'black',
+                backgroundImage: `url(${premiumBackground})`,
+                backgroundSize: 'cover', // Make the image fit within the div
+                backgroundRepeat: 'no-repeat', // Prevent image repetition
+              }}>{user.result.tier.split(' ')[0]}</h2>
+              :
+              <h2 style={{
+                marginTop: '0',
+                fontSize: '14px',
+                display: 'inline-block',
+                padding: '1px 10px',
+                borderRadius: '3px',
+                color: 'black',
+                backgroundColor: `var(--tier-${user.result.tier.split(' ')[0].toLowerCase()})`
+              }}>{user.result.tier.split(' ')[0]}</h2>
+            }
+
           </div>
         </div>
 

@@ -17,6 +17,8 @@ import { getTableState } from '../../../actions/table'
 export default function Table({ data, metrics, timeframe, IS }) {
   const dispatch = useDispatch()
 
+  console.log(timeframe)
+
   const isCollapsedMetrics_obj = {}
   const isToggledMetrics_obj = {}
   const isExtrasMenuToggled_obj = {}
@@ -38,6 +40,29 @@ export default function Table({ data, metrics, timeframe, IS }) {
     'dividendsYield',
   ]
 
+  const autoToggledYoY = [
+    'totalRevenue',
+    'totalAssets',
+    'totalLiab',
+    'totalStockholderEquity',
+    'freeCashFlow',
+    'sharesOutstanding',
+    'dividendsPerShare'
+
+  ]
+
+  const autoToggledMargin = [
+    'grossProfit',
+    'netIncome',
+
+  ]
+
+  const autoCollapse = [
+    'totalAssets',
+    'totalLiab',
+
+  ]
+
   metrics.forEach(metric => {
     if (autoToggledMetrics.includes(metric.id)) {
       isToggledMetrics_obj[metric.id] = true
@@ -52,9 +77,10 @@ export default function Table({ data, metrics, timeframe, IS }) {
   })
 
   metrics.forEach(metric => {
-    if (metric.id == 'totalRevenue' || metric.id == 'dividendsPerShare') {
+    if (autoToggledYoY.includes(metric.id)) {
       extras_obj[metric.id] = { YoY: true, QoQ: false, margin: false }
-    } else if (metric.id == 'grossProfit') {
+    }
+    else if (autoToggledMargin.includes(metric.id)) {
       extras_obj[metric.id] = { YoY: false, QoQ: false, margin: true }
 
     } else {
@@ -64,7 +90,12 @@ export default function Table({ data, metrics, timeframe, IS }) {
   })
 
   metrics.filter(metrics => metrics.collapsible).forEach(metric => {
-    isCollapsedMetrics_obj[metric.id] = true
+    if (autoCollapse.includes(metric.id)) {
+      isCollapsedMetrics_obj[metric.id] = false
+    } else {
+      isCollapsedMetrics_obj[metric.id] = true
+
+    }
   })
 
   const [isCollapsedMetrics, setIsCollapsedMetrics] = useState(isCollapsedMetrics_obj)

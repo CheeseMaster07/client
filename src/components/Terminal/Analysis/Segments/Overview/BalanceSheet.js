@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import '../../../../../css/terminal/segments/overview/balanceSheet.css'
 
 export default function BalanceSheet({ stock }) {
   const navigate = useNavigate()
@@ -17,8 +19,6 @@ export default function BalanceSheet({ stock }) {
 
   const totalEquity = Number(balanceSheet.totalStockholderEquity)
 
-  console.log(totalAssets)
-  console.log(equityAndLiabilities)
 
   let sizes
   if (window.innerWidth < 2000) {
@@ -53,10 +53,10 @@ export default function BalanceSheet({ stock }) {
             overflow: 'hidden',
             borderRadius: '10px 0 0 10px'
           }}>
-            <div style={{ height: `${(currnetAssets / totalAssets * 100).toFixed(0)}%`, width: '100%', borderBottom: 'solid 2px rgba(68, 138, 255, 1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div className='current-assets' style={{ height: `${(currnetAssets / totalAssets * 100).toFixed(0)}%`, width: '100%', borderBottom: 'solid 2px rgba(68, 138, 255, 1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <p style={{ margin: '0', fontWeight: 'bold', fontSize: '19px' }}>Current Assets</p>
             </div>
-            <div style={{ height: `${(fixedAssets / totalAssets * 100).toFixed(0)}%`, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div className='fixed-assets' style={{ height: `${(fixedAssets / totalAssets * 100).toFixed(0)}%`, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <p style={{ margin: '0', fontWeight: 'bold', fontSize: '19px' }}>Fixed Assets</p>
 
             </div>
@@ -73,10 +73,10 @@ export default function BalanceSheet({ stock }) {
               overflow: 'hidden',
               borderRadius: '0 10px 0 0',
             }}>
-              <div style={{ height: `${(currnetLiabilities / totalLiabilities * 100).toFixed(0)}%`, width: '100%', borderBottom: 'solid 2px rgba(77, 208, 225, 1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div className='current-liabilities' style={{ height: `${(currnetLiabilities / totalLiabilities * 100).toFixed(0)}%`, width: '100%', borderBottom: 'solid 2px rgba(77, 208, 225, 1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <p style={{ margin: '0', fontWeight: 'bold', fontSize: '19px' }}>Current Liabilities</p>
               </div>
-              <div style={{ height: `${(fixedLiabilities / totalLiabilities * 100).toFixed(0)}%`, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div className='fixed-liabilities' style={{ height: `${(fixedLiabilities / totalLiabilities * 100).toFixed(0)}%`, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <p style={{ margin: '0', fontWeight: 'bold', fontSize: '19px' }}>Fixed Liabilities</p>
 
               </div>
@@ -92,7 +92,7 @@ export default function BalanceSheet({ stock }) {
               overflow: 'hidden',
               borderRadius: '0 0 10px 0',
             }}>
-              <div style={{ height: `100%`, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div className='equity' style={{ height: `100%`, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <p style={{ margin: '0', fontWeight: 'bold', fontSize: '19px' }}>Equity</p>
 
               </div>

@@ -79,6 +79,8 @@ export default function Dcf({ stock, periods }) {
       return (num / 1000000).toFixed(1) + 'M';
     } else if (Math.abs(num) >= 1000) {
       return (num / 1000).toFixed(1) + 'K';
+    } else {
+      return (num)
     }
   }
 
@@ -158,9 +160,9 @@ export default function Dcf({ stock, periods }) {
             <div className='input-container'>
               <label>Free Cash Flow Margin</label>
               <div className='averages'>
+                <div>{`${(stock.fundamentals.dcf.freeCashflowMargin.tenYears * 100).toFixed(1)}%`}</div>
                 <div>{`${(stock.fundamentals.dcf.freeCashflowMargin.fiveYears * 100).toFixed(1)}%`}</div>
-                <div>{`${(stock.fundamentals.dcf.freeCashflowMargin.fiveYears * 100).toFixed(1)}%`}</div>
-                <div>{`${(stock.fundamentals.dcf.freeCashflowMargin.fiveYears * 100).toFixed(1)}%`}</div>
+                <div>{`${(stock.fundamentals.dcf.freeCashflowMargin.oneYear * 100).toFixed(1)}%`}</div>
               </div>
               <div className='input-fields'>
                 <div className='input-with-percent'>
@@ -330,7 +332,7 @@ export default function Dcf({ stock, periods }) {
 
 
                   <tr>
-                    <th>{(new Date().getFullYear())} Return</th>
+                    <th>{(new Date().getFullYear()) + Number(periods)} Return</th>
                     <td >{`${dcfResults.bearCase?.bagger.toFixed(1)}X`}</td>
                     <td >{`${dcfResults.neutralCase?.bagger.toFixed(1)}X`}</td>
                     <td >{`${dcfResults.bullCase?.bagger.toFixed(1)}X`}</td>

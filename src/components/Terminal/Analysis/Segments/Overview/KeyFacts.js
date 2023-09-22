@@ -45,7 +45,7 @@ export default function KeyFacts({ stock }) {
     },
     {
       label: 'CEO',
-      data: stock.general.Officers['0'].Name.replace(/^Mr\. /, ''),
+      data: stock.general.Officers ? stock.general.Officers['0'].Name.replace(/^Mr\. /, '') : '-',
 
       label2: 'Sector',
       data2: stock.general.Sector,

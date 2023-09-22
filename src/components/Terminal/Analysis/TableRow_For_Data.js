@@ -60,7 +60,12 @@ export default function TableRow_For_Data({ period, height, fontSize, metrics, w
           if (metric.link) {
             return <td style={{ ...style, fontWeight: '400' }} ><a style={{ color: 'rgba(255, 255, 255, .9)' }} href={period[metric.link]} target="_blank">{period[metric.link]}</a></td>
           }
-          return <td style={{ ...style, backgroundColor: backgroundColor, color: color, textAlign: textAlign, paddingLeft: paddingLeft }}>{period[metric.id]}</td>
+          return <td style={{ ...style, backgroundColor: backgroundColor, color: color, textAlign: textAlign, paddingLeft: paddingLeft }}>{
+            window.location.pathname.split('/')[4] == 'management' ?
+              period[metric.id].replace(/^(Mr\.|Mrs\.|Ms\.)\s+/g, '')
+              :
+              period[metric.id]}
+          </td>
         })}
 
       </tr>

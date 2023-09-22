@@ -61,7 +61,7 @@ export default function Valuation({ stock }) {
 
   useEffect(() => {
     const numOfReports = Object.keys(allReports).length
-    console.log(mode)
+    //console.log(mode)
     if (mode == 'multiples') {
       if (numOfReports - 1 >= 10) {
         setperiods('10')
@@ -75,7 +75,7 @@ export default function Valuation({ stock }) {
         setperiods('1')
       }
     } else {
-      console.log('sd')
+      //console.log('sd')
       setperiods('10')
     }
 

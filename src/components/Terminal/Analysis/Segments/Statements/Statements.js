@@ -26,6 +26,8 @@ export default function Statements({ stock }) {
 
           { id: 'costOfRevenue', label: 'Cost of Goods Sold', type: 'second', collapsible: true, color: 'rgb(231, 12, 12)' },
           { id: 'depreciationAndAmortization', label: 'D&A', type: 'costOfRevenue-sub', collapsible: false, color: 'rgb(231, 12, 12)' },
+          // { id: 'reconciledDepreciation', label: 'Depreciation', type: 'depreciationAndAmortization-sub', collapsible: false, color: 'rgb(231, 12, 12)' },
+          // { id: 'amortization', label: 'D&A', type: 'costOfRevenue-sub', collapsible: true, color: 'rgb(231, 12, 12)' },
           { id: 'otherCostOfRevenue', label: 'Other Cost of Goods Sold', type: 'costOfRevenue-sub', collapsible: false, color: 'rgb(231, 12, 12)' },
 
           { id: 'grossProfit', label: 'Gross Profit', type: 'main', collapsible: false, color: 'rgb(77, 208, 225)' },
@@ -37,6 +39,9 @@ export default function Statements({ stock }) {
           { id: 'operatingIncome', label: 'Operating Income', type: 'main', collapsible: false, color: 'rgb(179, 136, 255)' },
 
           { id: 'nonOperatingIncomeNetOther', label: 'Non Operating Income', type: 'second', collapsible: true, color: 'rgb(231, 12, 12)' },
+          { id: 'interestExpense', label: 'Interest Expense', type: 'nonOperatingIncomeNetOther-sub', collapsible: false, color: 'rgb(231, 12, 12)' },
+
+
 
           { id: 'incomeBeforeTax', label: 'Pretax Income', type: 'main', collapsible: false, color: 'rgb(245, 127, 23)' },
 
@@ -52,17 +57,23 @@ export default function Statements({ stock }) {
       case 'balanceSheet':
         metricsData = [
           { id: 'totalAssets', label: 'Total Assets', type: 'main', collapsible: true, color: 'rgb(68, 138, 255)' },
-          { id: 'totalCurrentAssets', label: 'Current Assets', type: 'totalAssets-sub', collapsible: false },
-          { id: 'nonCurrentAssetsTotal', label: 'Non-current Assets', type: 'totalAssets-sub', collapsible: false },
+          { id: 'totalCurrentAssets', label: 'Current Assets', type: 'totalAssets-sub', collapsible: false, color: 'rgb(231, 12, 12)' },
+          { id: 'nonCurrentAssetsTotal', label: 'Non-current Assets', type: 'totalAssets-sub', collapsible: false, color: 'rgb(231, 12, 12)' },
 
           { id: 'totalLiab', label: 'Total Liabilities', type: 'main', collapsible: true, color: 'rgb(77, 208, 225)' },
-          { id: 'totalCurrentLiabilities', label: 'Current Liabilities', type: 'totalLiab-sub', collapsible: false },
-          { id: 'nonCurrentLiabilitiesTotal', label: 'Non-current Liabilities', type: 'totalLiab-sub', collapsible: false },
+          { id: 'totalCurrentLiabilities', label: 'Current Liabilities', type: 'totalLiab-sub', collapsible: false, color: 'rgb(231, 12, 12)' },
+          { id: 'nonCurrentLiabilitiesTotal', label: 'Non-current Liabilities', type: 'totalLiab-sub', collapsible: false, color: 'rgb(231, 12, 12)' },
 
           { id: 'totalStockholderEquity', label: 'Total Equity', type: 'main', collapsible: true, color: 'rgb(245, 127, 23)' },
-          { id: 'commonStock', label: "Common Stock", type: 'totalStockholderEquity-sub', collapsible: true },
-          { id: 'retainedEarnings', label: "Retained Earnings", type: 'commonStock-sub', collapsible: false },
-          { id: 'preferredStockTotalEquity', label: 'Preferred Stock', type: 'totalStockholderEquity-sub', collapsible: false },
+          { id: 'commonStock', label: "Common Stock", type: 'totalStockholderEquity-sub', collapsible: true, color: 'rgb(231, 12, 12)' },
+          { id: 'retainedEarnings', label: "Retained Earnings", type: 'commonStock-sub', collapsible: false, color: 'rgb(231, 12, 12)' },
+          { id: 'preferredStockTotalEquity', label: 'Preferred Stock', type: 'totalStockholderEquity-sub', collapsible: false, color: 'rgb(231, 12, 12)' },
+
+          { id: 'netDebt', label: 'Net Debt', type: 'main', collapsible: false, color: 'rgb(231, 12, 12)' },
+
+          { id: 'shortLongTermDebtTotal', label: 'Total Debt', type: 'main', collapsible: false, color: 'rgb(231, 12, 12)' },
+
+
           // Add more metrics as needed
         ];
         break;
@@ -319,12 +330,19 @@ export default function Statements({ stock }) {
         </div>
         <Button text={'Export Data'} type={'export'} />
       </div>
-      <Table data={reports} metrics={metrics} timeframe={timeframe} IS={stock.fundamentals.financialStatements.Income_Statement[`${timeframe}`]} />
-      <Chart data={reports} metrics={metrics} state={{
-        financialStatement: financialStatement,
-        timeframe: timeframe,
-        periods: periods,
-      }} />
+      <div className='table-chart-container'>
+        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '84.5vh' }}>
+          <Table data={reports} metrics={metrics} timeframe={timeframe} IS={stock.fundamentals.financialStatements.Income_Statement[`${timeframe}`]} />
+          <Chart data={reports} metrics={metrics} state={{
+            financialStatement: financialStatement,
+            timeframe: timeframe,
+            periods: periods,
+
+          }} />
+        </div>
+      </div>
+
+
     </>
   )
 }

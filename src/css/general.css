@@ -10,8 +10,6 @@ body {
   background-color: var(--green-dark);
   font-family: 'Roboto', sans-serif;
   overflow-x: hidden;
-  overflow-y: hidden;
-  padding-bottom: 3000px;
 }
 
 h1 {

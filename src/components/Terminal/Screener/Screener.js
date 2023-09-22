@@ -55,6 +55,14 @@ export default function Screener() {
     type: false
   })
 
+  useEffect(() => {
+    if (!filteredStocks.length) {
+      setFilteredStocks(searchedStocks)
+    }
+
+
+  }, [searchedStocks])
+
 
   useEffect(() => {
     if (preset != '') {
@@ -72,7 +80,6 @@ export default function Screener() {
   }, [searchQuery])
 
   useEffect(() => {
-    console.log(presetList)
     if (JSON.stringify(presetList.filter(metric => metric.label !== 'ticker')) !== JSON.stringify(presets[preset])) {
       setPreset('')
     }
@@ -246,7 +253,6 @@ export default function Screener() {
 
   }, [sortBy, fireAfterFiltering])
 
-
   return (
     <>
       <div className="statements-header" style={{ boxShadow: '0 2px 6px 1px rgba(0, 0, 0, .25)', padding: '25px 25px' }}>
@@ -259,8 +265,12 @@ export default function Screener() {
 
         />
       </div>
+
       <Table
-        stocks={filteredStocks.slice(0, 100)}
+        stocks={filteredStocks
+          .filter(stock => stock.general?.Name && stock?.ticker)
+          .filter(stock => stock.general.Name.toLowerCase().startsWith(searchQuery.toLowerCase()) || stock.ticker.toLowerCase().startsWith(searchQuery.toLowerCase()))
+          .slice(0, 100)}
         metrics={presetList}
         filter={filter}
         setFilter={setFilter}
@@ -272,6 +282,11 @@ export default function Screener() {
         :
         ''}
 
+
     </>
   )
+
 }
+
+
+

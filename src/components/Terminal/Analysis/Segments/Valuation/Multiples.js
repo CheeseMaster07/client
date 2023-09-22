@@ -23,14 +23,19 @@ export default function Multiples({ metrics, stock, periods, reports }) {
     scales: {
       x: {
         ticks: {
-          callback: function (value, index) {
-            const year = this.getLabelForValue(value).split('-')[0]
+          callback: function (value, index, values) {
+            const year = this.getLabelForValue(value).split('-')[0];
+            const totalYears = values.length;
 
-            if (index % 4 == 0) {
+            if (index === 0 || index === totalYears - 1) {
+              // Always show the first and last years
+              return year;
+            } else if (index % Math.floor(totalYears / 10) === 0) {
+              // Show years at regular intervals (adjust the divisor for desired spacing)
               return year;
             }
 
-            return ''
+            return '';
 
           },
           color: 'white'
@@ -79,10 +84,57 @@ export default function Multiples({ metrics, stock, periods, reports }) {
           color: 'white'
         },
       },
+      y6: {
+        type: 'linear',
+        display: false,
+        position: 'right',
+        ticks: {
+          callback: function (value) {
+            if (Math.abs(value) >= 1000000000000) {
+              return (value / 1000000000000).toFixed(1) + 'T'
+            } else if (Math.abs(value) >= 1000000000) {
+              return (value / 1000000000).toFixed(1) + 'B';
+            } else if (Math.abs(value) >= 1000000) {
+              return (value / 1000000).toFixed(1) + 'M';
+            } else if (Math.abs(value) >= 1000) {
+              return (value / 1000).toFixed(1) + 'K';
+            } else {
+              return value?.toFixed(1);
+            }
+          },
+          color: 'white'
+        },
+      },
 
     },
     plugins: {
       options: {
+
+      },
+      tooltip: {
+        callbacks: {
+          label: function (data) {
+            if (data.dataset.yAxisID == 'y6') {
+              if (Math.abs(data.raw) >= 1000000000000) {
+                return (data.raw / 1000000000000).toFixed(1) + 'T'
+              } else if (Math.abs(data.raw) >= 1000000000) {
+                return (data.raw / 1000000000).toFixed(1) + 'B';
+              } else if (Math.abs(data.raw) >= 1000000) {
+                return (data.raw / 1000000).toFixed(1) + 'M';
+              } else if (Math.abs(data.raw) >= 1000) {
+                return (data.raw / 1000).toFixed(1) + 'K';
+              } else {
+                return data.raw?.toFixed(2);
+              }
+            } else {
+              if (Math.abs(data.raw) >= 1) {
+                return data.raw?.toFixed(1)
+              } else {
+                return data.raw?.toFixed(2)
+              }
+            }
+          }
+        },
 
       },
       legend: {
@@ -160,7 +212,7 @@ export default function Multiples({ metrics, stock, periods, reports }) {
 
   useEffect(() => {
 
-    ['y1', 'y2', 'y3', 'y4', 'y5'].forEach(y => {
+    ['y1', 'y2', 'y3', 'y4', 'y5', 'y6'].forEach(y => {
 
       if (chartData.datasets.filter(dataset => dataset.yAxisID == y).length) {
 

@@ -251,7 +251,7 @@ export default function ChartCustom({
         <div style={{ marginTop: `${window.innerWidth < 2000 ? '10px' : ''}` }} className='chart-legend'>
           <ChartLegend chartData={chartData} metrics={metrics} />
         </div>
-        <div style={{ marginTop: `${window.innerWidth < 2000 ? '0px' : '25px'}`, height: `${window.innerWidth < 2000 ? '36rem' : '52rem'}` }} className="chart">
+        <div style={{ marginTop: `${window.innerWidth < 2000 ? '0px' : '25px'}`, height: `${window.innerWidth < 2000 ? '28rem' : '42rem'}` }} className="chart">
           <Chart data={chartData} options={chartOptions} />
         </div>
       </div>

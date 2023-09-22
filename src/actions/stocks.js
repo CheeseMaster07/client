@@ -18,7 +18,7 @@ export const getOneStock = (ticker) => async (dispatch) => {
 
     const { data } = await api.fetchOneStock(ticker)
 
-
+    //console.log(data)
     dispatch({ type: FETCH_ONE_STOCK, payload: data });
   } catch (error) {
     console.log(error.message)

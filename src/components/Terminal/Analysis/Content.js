@@ -47,7 +47,7 @@ export default function ({ segment }) {
       element = <Valuation stock={stock} />;
       break;
     case 'competition':
-      if (user.tier != 'Free Plan' && user.tier != 'Pro Plan') {
+      if (user.tier != 'Free Plan') {
         element = <Competition stock={stock} />;
       } else {
         element = <NeedUpgrading segment={segment} plan={'Premium'} />
@@ -61,14 +61,14 @@ export default function ({ segment }) {
       }
       break;
     case 'segments':
-      if (user.tier != 'Free Plan' && user.tier != 'Pro Plan') {
+      if (user.tier != 'Free Plan') {
         element = <Segments stock={stock} />;
       } else {
         element = <NeedUpgrading segment={segment} plan={'Premium'} />
       }
       break;
     case 'insider':
-      if (user.tier != 'Free Plan' && user.tier != 'Pro Plan') {
+      if (user.tier != 'Free Plan') {
         element = <Insider stock={stock} />;
       } else {
         element = <NeedUpgrading segment={segment} plan={'Premium'} />
@@ -78,7 +78,7 @@ export default function ({ segment }) {
       element = <Dividends stock={stock} />;
       break;
     case 'shorts':
-      if (user.tier != 'Free Plan' && user.tier != 'Pro Plan') {
+      if (user.tier != 'Free Plan') {
         element = <Shorts stock={stock} />;
       } else {
         element = <NeedUpgrading segment={segment} plan={'Premium'} />
@@ -92,14 +92,14 @@ export default function ({ segment }) {
       }
       break;
     case 'management':
-      if (user.tier == 'Ultimate Plan' || user.tier == 'Admin Plan') {
+      if (user.tier != 'Free Plan') {
         element = <Management stock={stock} />;
       } else {
         element = <NeedUpgrading segment={segment} plan={'Ultimate'} />
       }
       break;
     case 'shareholders':
-      if (user.tier == 'Ultimate Plan' || user.tier == 'Admin Plan') {
+      if (user.tier != 'Free Plan') {
         element = <Shareholders stock={stock} />;
       } else {
         element = <NeedUpgrading segment={segment} plan={'Ultimate'} />

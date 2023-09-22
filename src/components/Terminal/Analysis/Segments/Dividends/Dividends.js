@@ -117,10 +117,12 @@ export default function Dividends({ stock }) {
         />
       </div>
       {mode == 'statistics' ?
-        <>
-          <Table_For_Chart data={reports} metrics={metrics} timeframe={'yearly'} IS={stock.fundamentals.financialStatements.Income_Statement[`yearly`]} />
-          <Chart metrics={metrics} reports={reports} timeframe={'yearly'} />
-        </>
+        <div className='table-chart-container'>
+          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '84vh' }}>
+            <Table_For_Chart data={reports} metrics={metrics} timeframe={'yearly'} IS={stock.fundamentals.financialStatements.Income_Statement[`yearly`]} />
+            <Chart metrics={metrics} reports={reports} timeframe={'yearly'} />
+          </div>
+        </div>
         :
         <Table_For_Data data={stock.dividendsData.everyOne} metrics={historyMetrics} />
       }

@@ -1,0 +1,17 @@
+.current-assets:hover {
+  background-color: rgba(68, 138, 255, .25);
+}
+.fixed-assets:hover {
+  background-color: rgba(68, 138, 255, .25);
+}
+
+.current-liabilities:hover {
+  background-color: rgba(77, 208, 225, .25);
+}
+.fixed-liabilities:hover {
+  background-color: rgba(77, 208, 225, .25);
+}
+
+.equity:hover {
+  background-color: rgba(251, 192, 45, .25);
+}

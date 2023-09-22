@@ -7,6 +7,7 @@ import { getMonthlyAnnually } from '../../../../actions/pricing'
 
 import checkmark_png from '../../../../logos/checkmark.png'
 import cross_png from '../../../../logos/cross.png'
+import premiumBackground from '../../../../logos/premium.jpg'
 
 import '../../../../css/homepage/segments.css'
 import '../../../../css/colors.css'
@@ -61,9 +62,9 @@ export default function Pricing({ moreInfo }) {
           Annually
         </div>
       </div>
-      <div style={moreInfo ? { width: '55%' } : {}} className="pricing-options">
+      <div style={moreInfo ? { width: '18%' } : {}} className="pricing-options">
 
-        <div className="pricing-option" >
+        {/* <div className="pricing-option" >
           <h3 className='tier' style={{
             color: 'black',
             backgroundColor: 'var(--tier-pro)',
@@ -106,16 +107,18 @@ export default function Pricing({ moreInfo }) {
             </Link>
           }
 
-        </div>
+        </div> */}
         <div className="pricing-option">
           <h3 className='tier' style={{
             color: 'black',
-            backgroundColor: 'var(--tier-premium)',
+            backgroundImage: `url(${premiumBackground})`,
+            backgroundSize: 'cover', // Make the image fit within the div
+            backgroundRepeat: 'no-repeat', // Prevent image repetition
             display: 'inline-block',
             padding: '3px 45px',
             borderRadius: '10px',
           }}>Premium</h3>
-          <p className="price">{monthlyAnnually == 'monthly' ? '$20' : '$160'}</p>
+          <p className="price">{monthlyAnnually == 'monthly' ? '$15' : '$120'}</p>
           <p className="month">{monthlyAnnually == 'monthly' ? '/month' : '/year'}</p>
           {monthlyAnnually == 'annually' ?
             <div className="sale">
@@ -151,7 +154,8 @@ export default function Pricing({ moreInfo }) {
             </Link>
           }
         </div>
-        <div className="pricing-option">
+
+        {/* <div className="pricing-option">
           <h3 className='tier' style={{
             color: 'black',
             backgroundColor: 'var(--tier-ultimate)',
@@ -194,7 +198,7 @@ export default function Pricing({ moreInfo }) {
               Buy
             </Link>
           }
-        </div>
+        </div> */}
       </div>
       {
         !moreInfo ? (
@@ -215,9 +219,10 @@ export default function Pricing({ moreInfo }) {
                 <tr>
                   <td></td>
                   <td>Free</td>
-                  <td>Pro</td>
+
                   <td>Premium</td>
-                  <td>Ultimate</td>
+                  <td></td>
+
                 </tr>
 
               </thead>
@@ -227,105 +232,105 @@ export default function Pricing({ moreInfo }) {
                   <td></td>
                   <td></td>
                   <td></td>
-                  <td></td>
+
                 </tr>
                 <tr className='not-subHeader'>
                   <td>Overview</td>
                   <td><img className='checkmark-logo' src={checkmark_png} /></td>
                   <td><img className='checkmark-logo' src={checkmark_png} /></td>
-                  <td><img className='checkmark-logo' src={checkmark_png} /></td>
-                  <td><img className='checkmark-logo' src={checkmark_png} /></td>
+                  <td></td>
+
                 </tr>
                 <tr className='not-subHeader'>
                   <td>Statements</td>
                   <td><img className='checkmark-logo' src={checkmark_png} /></td>
                   <td><img className='checkmark-logo' src={checkmark_png} /></td>
-                  <td><img className='checkmark-logo' src={checkmark_png} /></td>
-                  <td><img className='checkmark-logo' src={checkmark_png} /></td>
+                  <td></td>
+
                 </tr>
                 <tr className='not-subHeader'>
                   <td>Valuation</td>
                   <td><img className='checkmark-logo' src={checkmark_png} /></td>
                   <td><img className='checkmark-logo' src={checkmark_png} /></td>
-                  <td><img className='checkmark-logo' src={checkmark_png} /></td>
-                  <td><img className='checkmark-logo' src={checkmark_png} /></td>
+                  <td></td>
+
                 </tr>
                 <tr className='not-subHeader'>
                   <td>Dividends</td>
                   <td><img className='checkmark-logo' src={checkmark_png} /></td>
                   <td><img className='checkmark-logo' src={checkmark_png} /></td>
-                  <td><img className='checkmark-logo' src={checkmark_png} /></td>
-                  <td><img className='checkmark-logo' src={checkmark_png} /></td>
+                  <td></td>
+
                 </tr>
                 <tr className='not-subHeader'>
                   <td>Buybacks</td>
                   <td><img className='cross-logo' src={cross_png} /></td>
                   <td><img className='checkmark-logo' src={checkmark_png} /></td>
-                  <td><img className='checkmark-logo' src={checkmark_png} /></td>
-                  <td><img className='checkmark-logo' src={checkmark_png} /></td>
+                  <td></td>
+
                 </tr>
                 <tr className='not-subHeader'>
                   <td>Competition</td>
                   <td><img className='cross-logo' src={cross_png} /></td>
                   <td><img className='cross-logo' src={cross_png} /></td>
-                  <td><img className='checkmark-logo' src={checkmark_png} /></td>
-                  <td><img className='checkmark-logo' src={checkmark_png} /></td>
+                  <td></td>
+
                 </tr>
                 <tr className='not-subHeader'>
                   <td>Segments</td>
                   <td><img className='cross-logo' src={cross_png} /></td>
                   <td><img className='cross-logo' src={cross_png} /></td>
-                  <td><img className='checkmark-logo' src={checkmark_png} /></td>
-                  <td><img className='checkmark-logo' src={checkmark_png} /></td>
+                  <td></td>
+
                 </tr>
                 <tr className='not-subHeader'>
                   <td>Forecasts</td>
                   <td><img className='cross-logo' src={cross_png} /></td>
                   <td><img className='checkmark-logo' src={checkmark_png} /></td>
-                  <td><img className='checkmark-logo' src={checkmark_png} /></td>
-                  <td><img className='checkmark-logo' src={checkmark_png} /></td>
+                  <td></td>
+
                 </tr>
                 <tr className='not-subHeader'>
                   <td>Shorts</td>
                   <td><img className='cross-logo' src={cross_png} /></td>
                   <td><img className='cross-logo' src={cross_png} /></td>
-                  <td><img className='checkmark-logo' src={checkmark_png} /></td>
-                  <td><img className='checkmark-logo' src={checkmark_png} /></td>
+                  <td></td>
+
                 </tr>
                 <tr className='not-subHeader'>
                   <td>Insider</td>
                   <td><img className='cross-logo' src={cross_png} /></td>
                   <td><img className='cross-logo' src={cross_png} /></td>
-                  <td><img className='checkmark-logo' src={checkmark_png} /></td>
-                  <td><img className='checkmark-logo' src={checkmark_png} /></td>
+                  <td></td>
+
                 </tr>
                 <tr className='not-subHeader'>
                   <td>Management</td>
                   <td><img className='cross-logo' src={cross_png} /></td>
                   <td><img className='cross-logo' src={cross_png} /></td>
-                  <td><img className='cross-logo' src={cross_png} /></td>
-                  <td><img className='checkmark-logo' src={checkmark_png} /></td>
+                  <td></td>
+
                 </tr>
                 <tr className='not-subHeader'>
                   <td>Shareholders</td>
                   <td><img className='cross-logo' src={cross_png} /></td>
                   <td><img className='cross-logo' src={cross_png} /></td>
-                  <td><img className='cross-logo' src={cross_png} /></td>
-                  <td><img className='checkmark-logo' src={checkmark_png} /></td>
+                  <td></td>
+
                 </tr>
                 <tr className='not-subHeader'>
                   <td>SEC Filings</td>
                   <td><img className='cross-logo' src={cross_png} /></td>
                   <td><img className='checkmark-logo' src={checkmark_png} /></td>
-                  <td><img className='checkmark-logo' src={checkmark_png} /></td>
-                  <td><img className='checkmark-logo' src={checkmark_png} /></td>
+                  <td></td>
+
                 </tr>
                 <tr className='not-subHeader'>
                   <td>Export Data</td>
                   <td><img className='cross-logo' src={cross_png} /></td>
                   <td><img className='checkmark-logo' src={checkmark_png} /></td>
-                  <td><img className='checkmark-logo' src={checkmark_png} /></td>
-                  <td><img className='checkmark-logo' src={checkmark_png} /></td>
+                  <td></td>
+
                 </tr>
 
                 <tr className='subHeader'>
@@ -333,35 +338,35 @@ export default function Pricing({ moreInfo }) {
                   <td></td>
                   <td></td>
                   <td></td>
-                  <td></td>
+
                 </tr>
                 <tr className='not-subHeader'>
                   <td>Customize Screener</td>
                   <td><img className='cross-logo' src={cross_png} /></td>
                   <td><img className='checkmark-logo' src={checkmark_png} /></td>
-                  <td><img className='checkmark-logo' src={checkmark_png} /></td>
-                  <td><img className='checkmark-logo' src={checkmark_png} /></td>
+                  <td></td>
+
                 </tr>
                 <tr className='not-subHeader'>
                   <td>Export Data</td>
                   <td><img className='cross-logo' src={cross_png} /></td>
                   <td><img className='checkmark-logo' src={checkmark_png} /></td>
-                  <td><img className='checkmark-logo' src={checkmark_png} /></td>
-                  <td><img className='checkmark-logo' src={checkmark_png} /></td>
+                  <td></td>
+
                 </tr>
                 <tr className='subHeader'>
                   <td>Api</td>
                   <td></td>
                   <td></td>
                   <td></td>
-                  <td></td>
+
                 </tr>
                 <tr className='not-subHeader'>
                   <td>Full Api</td>
                   <td><img className='cross-logo' src={cross_png} /></td>
                   <td><img className='cross-logo' src={cross_png} /></td>
-                  <td><img className='cross-logo' src={cross_png} /></td>
-                  <td><img className='checkmark-logo' src={checkmark_png} /></td>
+                  <td></td>
+
                 </tr>
 
               </tbody>
